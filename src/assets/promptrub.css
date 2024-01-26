@@ -1,6 +1,7 @@
 .prompt-header {
   position: absolute;
   top: 5%;
+  left: 43.5%;
   font-weight: 400;
   font-size: 20px;
 }
@@ -39,7 +40,7 @@
 
 .logo-image {
   top: 13%;
-  left: 44%;
+  left: 43.5%;
   position: absolute;
   z-index: 3;
 }
@@ -82,14 +83,24 @@
 }
 
 .successful-icon {
-  margin: 10% 36.5% 5% 36.5%;
+  margin: 10% 36.75% 5% 36.75%;
   width: 164px;
   height: 164px;
 }
 
+@media only screen and (max-width: 1440px) {
+  .prompt-header {
+    left: 44%;
+  }
+
+  .logo-image {
+    left: 44%;
+  }
+}
+
 @media only screen and (max-width: 1024px) {
   .prompt-header {
-    left: 43%;
+    left: 41.5%;
   }
 
   .background-image1 {
@@ -109,7 +120,7 @@
   }
 
   .logo-image {
-    left: 41%;
+    left: 41.5%;
   }
 
   .coin-image1 {
@@ -144,7 +155,7 @@
   }
 
   .logo-image {
-    left: 38%;
+    left: 38.5%;
   }
 
   .coin-image1 {
@@ -208,7 +219,7 @@
   }
 
   .logo-image {
-    left: 28%;
+    left: 33%;
   }
 
   .coin-image1 {

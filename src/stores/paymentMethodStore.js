@@ -1,21 +1,16 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const usePaymentMethodStore = defineStore('paymentMethodStore', {
-  state: () => ({
-    msg: 'Your Message Here',
-    isShowLogo: ref(true),
-    key: ref(0)
-  }),
-  actions: {
-    updateMsg(newMsg) {
-      this.msg = newMsg
-    },
-    toggleLogo() {
-        console.log(this.isShowLogo);
-      this.isShowLogo = !this.isShowLogo
-      this.msg = 'Test'
-      this.key += 1
-    }
+export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
+  let msg = 'Your Message Here'
+  let isShowLogo = ref(true)
+  function updateMsg(newMsg) {
+    this.msg = newMsg
   }
+
+  function toggleLogo() {
+    this.isShowLogo = !this.isShowLogo
+  }
+
+  return { msg, isShowLogo, updateMsg, toggleLogo }
 })

@@ -1,22 +1,14 @@
 <script setup>
-import { ref } from 'vue'
-
 import PaymentMethodSelect from '@/components/PaymentMethod/PaymentMethodSelect.vue';
 import PaymentMethodSuccessful from '@/components/PaymentMethod/PaymentMethodSuccessful.vue';
 
-import { usePaymentMethodStore } from '../stores/paymentMethodStore';
-
-const { msg, isShowLogo, toggleLogo } = usePaymentMethodStore();
-const key = ref(0); // Add a key to force reactivity
+const paymentMethodStore = usePaymentMethodStore();
 </script>
 
 <template style="text-align:center;">
-  <button @click="toggleLogo">Toggle Logo</button>
-  <div style="text-align: center;">
-    <label class="prompt-header">{{ msg }}</label>
-  </div>
-  <div :key="key">
-    <div v-show="isShowLogo">
+  <label class="prompt-header">{{ paymentMethodStore.msg }}</label>
+  <div>
+    <div v-show="paymentMethodStore.isShowLogo">
       <img class="logo-image" src="../assets/images/logo.svg" alt="Logo Image">
       <img class="background-image1" src="../assets/images/background-1.svg" alt="background Image 1">
       <img class="background-image2" src="../assets/images/background-2.svg" alt="background Image 2">
@@ -32,4 +24,20 @@ const key = ref(0); // Add a key to force reactivity
 </template>
 
 <script>
+
+import { usePaymentMethodStore } from '@/stores/paymentMethodStore';
+
+export default {
+  data() {
+    return {
+      paymentMethodStore: usePaymentMethodStore(),
+    };
+  },
+  mounted() {
+  },
+  updated() {
+  },
+  methods: {
+  }
+};
 </script>
