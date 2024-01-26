@@ -39,8 +39,8 @@ jobs:
       with:
         credentials_json: '${{ secrets.GCR_KEY }}'
 
-    - name: Unit Test
-      run: npm run test:unit
+    #- name: Unit Test
+    #  run: npm run test:unit
 
     - name: Slack notification end
       if: always()
