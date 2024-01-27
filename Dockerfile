@@ -8,6 +8,12 @@ RUN npm run build
 
 # production stage
 FROM nginx:stable-alpine AS production-stage
+
+RUN addgroup -S nonroot \
+    && adduser -S nonroot -G nonroot
+
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
+USER nonroot
+
 CMD ["nginx", "-g", "daemon off;"]
