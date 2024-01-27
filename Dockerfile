@@ -3,10 +3,11 @@ FROM node:lts-alpine AS build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install --ignore-scripts
-#COPY . .
 
-COPY cypress public src /app/
-COPY *.json *.js *.html *.cjs /app/
+COPY . .
+
+#COPY cypress public src /app/
+#COPY *.json *.js *.html *.cjs /app/
 
 RUN npm run build
 
