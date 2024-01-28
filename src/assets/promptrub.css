@@ -38,11 +38,29 @@
   border-radius: 50px 50px 0px 0px;
 }
 
+.background-body-short {
+  position: absolute;
+  width: 600px;
+  height: 496px;
+  left: 29%;
+  top: 316px;
+  background: #fff6e6;
+  border-radius: 50px 50px 0px 0px;
+}
+
 .logo-image {
   top: 13%;
   left: 43.5%;
   position: absolute;
   z-index: 3;
+}
+
+.logo-imags-s {
+  position: absolute;
+  top: 1%;
+  left: 5%;
+  width: 40px;
+  height: 40px;
 }
 
 .coin-image1 {
@@ -71,7 +89,6 @@
   left: 57%;
   z-index: 3;
 }
-
 .prompt-content-header {
   font-weight: 400;
   font-size: 20px;
@@ -82,10 +99,224 @@
   font-size: 16px;
 }
 
+.payment-method-header {
+  margin: 50px 24px 0px 24px;
+}
+
+.payment-information-card-content {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  padding: 15px 0px 15px 0px;
+}
+.payment-information-header {
+  padding-left: 40px;
+}
+
+.payment-method-body {
+  padding-left: 40px;
+}
+
+.payment-method-btn {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e4dac8;
+  padding: 20px 10px;
+  margin: 0px 20px;
+}
+
+.method-icon {
+  position: absolute;
+}
+
+.chevron-icon {
+  right: 10%;
+  position: absolute;
+}
+
+.payment-method-disabled {
+  color: lightgray;
+}
+
+.icon-disabled {
+  opacity: 0.5;
+}
+
+.qr-code-header {
+  font-size: 18px;
+  color: #11285c;
+}
+
+.qr-code-content {
+  font-size: 16px;
+  color: #11285c;
+  margin: 10px 30px;
+}
+
+.qr-code-total {
+  width: 95%;
+  height: 42px;
+
+  background: #ff7777;
+  border-radius: 8px;
+
+  text-align: center;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.information-total {
+  width: 95%;
+  height: 42px;
+
+  background: #ffffff;
+  border-radius: 8px;
+
+  text-align: center;
+  font-size: 20px;
+  color: #11285c;
+}
+
+.payment-method-divider {
+  border-bottom: 1px solid #e4dac8;
+  padding-bottom: 10px;
+}
+
+.qr-code-image {
+  width: 186px;
+  height: 186px;
+  margin: 20px 0px 20px 200px;
+}
+
 .successful-icon {
   margin: 10% 36.75% 5% 36.75%;
   width: 164px;
   height: 164px;
+}
+
+.modal {
+  position: absolute;
+  width: 327px;
+  height: 172px;
+  left: 38%;
+  top: 292px;
+
+  background: #ffffff;
+  border-radius: 15px;
+
+  font-family: 'Kanit', sans-serif;
+}
+
+.close-modal-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  left: 40%;
+}
+
+.accept-modal-btn {
+  position: absolute;
+  width: 120px;
+  height: 39px;
+  left: 10%;
+  bottom: 10%;
+  padding-top: 7px;
+  background: #4ade47;
+  border-radius: 5px;
+}
+
+.cancel-modal-btn {
+  position: absolute;
+  width: 120px;
+  height: 39px;
+  left: 54%;
+  bottom: 10%;
+  padding-top: 7px;
+  background: #ff0000;
+  border-radius: 5px;
+}
+
+.save-modal-btn {
+  position: absolute;
+  width: 120px;
+  height: 39px;
+  left: 10%;
+  bottom: 10%;
+  padding-top: 7px;
+  background: #11285c;
+  border-radius: 5px;
+}
+
+.accept-modal-text {
+  color: white;
+  margin-left: 37px;
+}
+
+.cancel-btn {
+  position: absolute;
+  width: 250px;
+  height: 39px;
+  left: 51%;
+  bottom: 10%;
+  padding-top: 7px;
+  background: #ff0000;
+  border-radius: 5px;
+}
+
+.cancel-btn-xl {
+  position: absolute;
+  width: 500px;
+  height: 39px;
+  left: 8%;
+  bottom: 10%;
+  padding-top: 7px;
+  background: #ff0000;
+  border-radius: 5px;
+}
+
+.save-btn {
+  position: absolute;
+  width: 250px;
+  height: 39px;
+  left: 7%;
+  bottom: 10%;
+  padding-top: 7px;
+  background: #11285c;
+  border-radius: 5px;
+}
+
+.accept-text {
+  color: white;
+  margin-left: 105px;
+}
+
+.accept-text-xl {
+  color: white;
+  margin-left: 225px;
+}
+
+.payment-information-card {
+  position: absolute;
+  width: 500px;
+  height: 235px;
+  left: 32.25%;
+  top: 10%;
+  color: #11285c;
+  background: #fff3f3;
+  box-shadow: 0px 4px 4px #ffb2b2;
+  border-radius: 15px;
+}
+.payment-information-content {
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.payment-information-content-header {
+  font-size: 18px;
+  margin-top: 0px;
+  margin-left: 20px;
 }
 
 @media only screen and (max-width: 1440px) {
@@ -95,6 +326,29 @@
 
   .logo-image {
     left: 44%;
+  }
+
+  .qr-code-image {
+    margin: 20px 0px 20px 200px;
+  }
+
+  .accept-modal-text {
+    color: white;
+    margin-left: 37px;
+  }
+
+  .cancel-btn {
+    width: 137px;
+    left: 54%;
+  }
+
+  .save-btn {
+    width: 137px;
+    left: 13%;
+  }
+
+  .accept-text {
+    margin-left: 50px;
   }
 }
 
@@ -119,6 +373,16 @@
     left: 31.5%;
   }
 
+  .background-body-short {
+    width: 376px;
+    left: 31.5%;
+  }
+
+  .payment-information-card {
+    width: 376px;
+    left: 31.5%;
+  }
+
   .logo-image {
     left: 41.5%;
   }
@@ -138,6 +402,22 @@
   .successful-icon {
     margin: 10% 27% 5% 27%;
   }
+
+  .qr-code-image {
+    margin: 20px 0px 20px 100px;
+  }
+
+  .modal {
+    left: 33.5%;
+  }
+
+  .cancel-btn-xl {
+    width: 315px;
+  }
+  .accept-text-xl {
+    color: white;
+    margin-left: 132.5px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -150,7 +430,14 @@
   }
 
   .background-body {
-    width: 376px;
+    left: 25%;
+  }
+
+  .background-body-short {
+    left: 25%;
+  }
+
+  .payment-information-card {
     left: 25%;
   }
 
@@ -173,11 +460,15 @@
   .successful-icon {
     margin: 10% 27.5% 5% 27.5%;
   }
+
+  .modal {
+    left: 28.5%;
+  }
 }
 
 @media only screen and (max-width: 426px) {
   .prompt-header {
-    left: 35%;
+    left: 30%;
   }
 
   .background-image1 {
@@ -185,6 +476,14 @@
   }
 
   .background-body {
+    left: 5%;
+  }
+
+  .background-body-short {
+    left: 5%;
+  }
+
+  .payment-information-card {
     left: 5%;
   }
 
@@ -203,11 +502,15 @@
   .coin-image3 {
     left: 70%;
   }
+
+  .modal {
+    left: 11%;
+  }
 }
 
 @media only screen and (max-width: 376px) {
   .prompt-header {
-    left: 32%;
+    left: 27%;
   }
 
   .background-image1 {
@@ -218,8 +521,16 @@
     left: 0%;
   }
 
+  .background-body-short {
+    left: 0%;
+  }
+
+  .payment-information-card {
+    left: 0%;
+  }
+  
   .logo-image {
-    left: 33%;
+    left: 28%;
   }
 
   .coin-image1 {
@@ -232,5 +543,9 @@
 
   .coin-image3 {
     left: 75%;
+  }
+
+  .modal {
+    left: 7%;
   }
 }

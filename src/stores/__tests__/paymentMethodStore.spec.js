@@ -34,4 +34,15 @@ describe('usePaymentMethodStore', () => {
 
     expect(store.msg).toBe(newMsg);
   });
+  
+  it('should update message', () => {
+    const store = usePaymentMethodStore();
+
+    expect(store.step).toBe(1);
+
+    const newStep = 2;
+    store.updateStep(newStep);
+
+    expect(store.step).toBe(newStep);
+  });
 });
