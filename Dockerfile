@@ -20,8 +20,8 @@ RUN addgroup -S nonroot \
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 EXPOSE 80
 
-RUN mkdir -p /var/cache/nginx
-RUN chown nonroot:nonroot /var/cache/nginx
+RUN mkdir -p /var/cache/nginx /var/run
+RUN chown nonroot:nonroot /var/cache/nginx /var/run
 
 USER nonroot
 
