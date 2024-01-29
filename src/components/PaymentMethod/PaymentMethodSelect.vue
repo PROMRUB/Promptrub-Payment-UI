@@ -32,14 +32,8 @@
 </template>
 
 <script>
-import { usePaymentMethodStore } from '@/stores/paymentMethodStore';
 
 export default {
-    data() {
-        return {
-            paymentMethodStore: usePaymentMethodStore(),
-        };
-    },
     methods: {
         onClickSelectMethod(value) {
             this.$emit('selectedMethod', value);

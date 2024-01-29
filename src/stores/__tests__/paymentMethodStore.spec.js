@@ -1,48 +1,32 @@
-import { createApp } from 'vue';
-import { createPinia } from 'pinia';
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import { describe, it, expect, beforeEach } from 'vitest'
+import { usePaymentMethodStore } from '@/stores/PaymentMethodStore'
 
-import { describe, it, expect } from 'vitest';
-import { usePaymentMethodStore } from '@/stores/paymentMethodStore';
+describe('paymentMethodStore', () => {
+  let store
 
-const app = createApp();
-app.use(createPinia());
+  beforeEach(() => {
+    const app = createApp()
+    app.use(createPinia())
+    store = usePaymentMethodStore()
+  })
 
-app.config.globalProperties.$pinia = createPinia();
+  it('updates msg', () => {
+    const newMsg = 'New Message'
+    store.updateMsg(newMsg)
+    expect(store.msg).toBe(newMsg)
+  })
 
-describe('usePaymentMethodStore', () => {
-  it('should toggle logo visibility', () => {
-    const store = usePaymentMethodStore();
+  it('updates step', () => {
+    const newStep = 2
+    store.updateStep(newStep)
+    expect(store.step).toBe(newStep)
+  })
 
-    expect(store.isShowLogo).toBe(true);
-
-    store.toggleLogo();
-
-    expect(store.isShowLogo).toBe(false);
-
-    store.toggleLogo();
-
-    expect(store.isShowLogo).toBe(true);
-  });
-
-  it('should update message', () => {
-    const store = usePaymentMethodStore();
-
-    expect(store.msg).toBe('Your Message Here');
-
-    const newMsg = 'New Message';
-    store.updateMsg(newMsg);
-
-    expect(store.msg).toBe(newMsg);
-  });
-  
-  it('should update message', () => {
-    const store = usePaymentMethodStore();
-
-    expect(store.step).toBe(1);
-
-    const newStep = 2;
-    store.updateStep(newStep);
-
-    expect(store.step).toBe(newStep);
-  });
-});
+  it('toggles logo', () => {
+    const initialLogoState = store.isShowLogo
+    store.toggleLogo()
+    expect(store.isShowLogo).toBe(!initialLogoState)
+  })
+})

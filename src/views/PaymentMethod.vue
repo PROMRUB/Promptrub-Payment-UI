@@ -1,4 +1,6 @@
 <script setup>
+import CancelModal from '@/components/Common/CancelModal.vue';
+
 import PaymentMethodSelect from '@/components/PaymentMethod/PaymentMethodSelect.vue';
 import PaymentMethodMobileBanking from '@/components/PaymentMethod/PaymentMethodMobileBanking.vue';
 import PaymentMethodPaymentInformation from '@/components/PaymentMethod/PaymentMethodPaymentInformation.vue';
@@ -9,17 +11,9 @@ const paymentMethodStore = usePaymentMethodStore();
 </script>
 
 <template style="text-align:center;">
-  <Teleport to="body">
-    <div id="modal" v-show="paymentMethodStore.isShowModal" class="modal">
-      <img @click="onClickCloseModal" class="close-modal-icon" src="../assets/images/close-modal-icon.svg"
-        alt="Close Modal Icon" />
-      <p style="margin-top:50px;margin-left:47px">ท่านต้องการยกเลิกการชำระเงินหรือไม่</p>
-      <div @click="onClickCancelConfirmed" class="accept-modal-btn">
-        <label class="accept-modal-text">ยืนยัน</label>
-      </div>
-      <div @click="onClickCloseModal" class="cancel-modal-btn">
-        <label class="accept-modal-text">ยกเลิก</label>
-      </div>
+  <Teleport to="#modal">
+    <div v-show="paymentMethodStore.isShowModal">
+      <CancelModal @closeModal="onClickCloseModal" @cancelModal="onClickCancelConfirmed" />
     </div>
   </Teleport>
 
@@ -51,7 +45,7 @@ const paymentMethodStore = usePaymentMethodStore();
       <PaymentMethodSuccessful />
     </div>
   </div>
-  <div v-show="isShowShortBg"  :key="reactive" class="background-body-short">
+  <div v-show="isShowShortBg" :key="reactive" class="background-body-short">
     <div v-show="isMobileBankingStep">
       <PaymentMethodMobileBanking @openModal="onClickOpenModal" />
     </div>
@@ -60,10 +54,11 @@ const paymentMethodStore = usePaymentMethodStore();
 
 <script>
 
-import { usePaymentMethodStore } from '@/stores/paymentMethodStore'
+import { usePaymentMethodStore } from '@/stores/PaymentMethodStore'
 
 export default {
   components: {
+    CancelModal,
     PaymentMethodSelect,
     PaymentMethodMobileBanking,
     PaymentMethodQRCode,

@@ -17,8 +17,7 @@
                     <label>จำนวนเงินที่ต้องชำระ</label>
                 </div>
                 <div style="padding-left: 30px;" class="prompt-content-header qr-code-header">
-                    <input class="information-total" type="text" id="numericInput" v-model="formattedValue"
-                     @input="handleInput" disabled />
+                    <input class="information-total" type="text" id="numericInput" v-model="formattedValue" disabled />
                 </div>
             </div>
         </div>
@@ -26,7 +25,7 @@
 </template>
 
 <script>
-import { usePaymentMethodStore } from '@/stores/paymentMethodStore'
+import { usePaymentMethodStore } from '@/stores/PaymentMethodStore'
 export default {
     data() {
         return {
@@ -57,9 +56,6 @@ export default {
             this.rawValue = inputValue;
             this.formattedValue = formattedValue.concat(" บาท");
         },
-        onClickOpenMethod() {
-            this.$emit('openModal');
-        }
     }
 }
 </script>

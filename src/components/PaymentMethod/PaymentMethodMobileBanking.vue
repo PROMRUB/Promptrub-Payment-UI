@@ -48,9 +48,7 @@
 </template>
 
 <script>
-
-import { usePaymentMethodStore } from '@/stores/paymentMethodStore'
-
+import { usePaymentMethodStore } from '@/stores/PaymentMethodStore'
 export default {
     components: {
     },

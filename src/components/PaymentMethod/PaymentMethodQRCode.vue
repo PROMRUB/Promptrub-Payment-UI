@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
     <main>
         <div class="prompt-content-header payment-method-header qr-code-header payment-method-divider">
@@ -9,7 +6,7 @@
         <div class="prompt-content-header qr-code-content">
             <label>ชื่อร้านค้า</label>
         </div>
-        <div style="padding-left: 30px;" class="prompt-content-header qr-code-header">
+        <div style="padding-left: 30px;" class="prompt-content-header qr-code-header qr-code-header-shopname">
             <label>{{ paymentMethodStore.shopName }}</label>
         </div>
         <img class="qr-code-image" src="../../assets/images/qr-code.svg" alt="QR Code" />
@@ -17,7 +14,7 @@
             <label>ยอดชำระทั้งหมด</label>
         </div>
         <div style="padding-left: 30px;" class="prompt-content-header qr-code-header">
-            <input class="qr-code-total" type="text" id="numericInput" v-model="formattedValue" @input="handleInput"
+            <input class="qr-code-total" type="text" id="numericInput" v-model="formattedValue"
                 disabled />
         </div>
         <div class="prompt-content-header qr-code-content" style="text-align: center;font-size: 14px;">
@@ -34,7 +31,7 @@
 
 <script>
 
-import { usePaymentMethodStore } from '@/stores/paymentMethodStore'
+import { usePaymentMethodStore } from '@/stores/PaymentMethodStore'
 
 export default {
     components: {
