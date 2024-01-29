@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import PaymentMethod from '@/views/PaymentMethod.vue'
 import { usePaymentMethodStore } from '@/stores/PaymentMethodStore'

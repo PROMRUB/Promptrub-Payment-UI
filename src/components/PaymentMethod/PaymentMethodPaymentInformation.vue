@@ -37,25 +37,24 @@ export default {
     mounted() {
         let vm = this
         const inputValue = vm.paymentMethodStore.total.replace(/[^0-9.]/g, '');
-        const parts = inputValue.split('.');
-        const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        let decimalPart = parts[1] || '';
-        decimalPart = decimalPart.length > 2 ? decimalPart.substring(0, 2) : decimalPart;
-        const formattedValue = decimalPart ? `${integerPart}.${decimalPart}` : integerPart;
-        vm.rawValue = inputValue;
-        vm.formattedValue = formattedValue.concat(" บาท");
+            vm.formatValue(inputValue);
     },
     methods: {
         handleInput(event) {
+            let vm = this;
             const inputValue = event.target.value.replace(/[^0-9.]/g, '');
-            const parts = inputValue.split('.');
-            const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            vm.formatValue(inputValue);
+        },
+        formatValue(value) {
+            let vm = this;
+            const parts = value.split('.');
+            const integerPart = parts[0].split('').reverse().join('').replace(/(\d{3})(?=\d)/g, '$1,').split('').reverse().join('');
             let decimalPart = parts[1] || '';
             decimalPart = decimalPart.length > 2 ? decimalPart.substring(0, 2) : decimalPart;
             const formattedValue = decimalPart ? `${integerPart}.${decimalPart}` : integerPart;
-            this.rawValue = inputValue;
-            this.formattedValue = formattedValue.concat(" บาท");
-        },
+            vm.rawValue = value;
+            vm.formattedValue = formattedValue.concat(" บาท");
+        }
     }
 }
 </script>
