@@ -38,9 +38,11 @@ jobs:
       uses: 'google-github-actions/auth@v0'
       with:
         credentials_json: '${{ secrets.GCR_KEY }}'
+        
+    - name: Install Dependencies
+      run: npm install
 
     - name: Unit Test
-      run: npm install -g vitest
       run: npm run test:coverage
 
     - name: Slack notification end
