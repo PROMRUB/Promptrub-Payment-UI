@@ -22,8 +22,8 @@
         </div>
         <div class="payment-method-btn payment-method-disabled" @click="onClickSelectMethod(23)">
             <img class="method-icon icon-disabled" src="@/assets/images/visa-icon.svg" alt="Visa Icon" />
-            <img class="method-icon icon-disabled" style="padding-left: 50px;" src="@/assets/images/master-card-icon.svg" alt="Master Card Icon" />
-            <div class="method-text" style="padding-left: 50px;" >
+            <img class="method-icon icon-disabled method-second-icon" src="@/assets/images/master-card-icon.svg" alt="Master Card Icon" />
+            <div class="method-text method-second-icon" >
                 <label class="payment-method-header payment-method-body">บัตรเครดิต / เดบิต</label>
             </div>
             <img class="chevron-icon icon-disabled" src="@/assets/images/chevron-left.svg" alt="Chevron Left" />

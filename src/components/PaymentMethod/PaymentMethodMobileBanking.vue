@@ -49,6 +49,7 @@
 
 <script>
 import { usePaymentMethodStore } from '@/stores/PaymentMethodStore'
+import { formatCurrency } from '@/assets/utilities/util.js'
 export default {
     components: {
     },
@@ -61,29 +62,22 @@ export default {
     },
     mounted() {
         let vm = this
-        const inputValue = vm.paymentMethodStore.total.replace(/[^0-9.]/g, '');
-        vm.formatValue(inputValue);
+        vm.formatValue(vm.paymentMethodStore.total)
     },
     updated() {
     },
     methods: {
         handleInput(event) {
-            let vm = this;
-            const inputValue = event.target.value.replace(/[^0-9.]/g, '');
-            vm.formatValue(inputValue);
+            let vm = this
+            vm.formatValue(event.target.value)
+        },
+        formatValue(value) {
+            let vm = this
+            vm.rawValue = value
+            vm.formattedValue = formatCurrency(value)
         },
         onClickOpenMethod() {
             this.$emit('openModal');
-        },
-        formatValue(value) {
-            let vm = this;
-            const parts = value.split('.');
-            const integerPart = parts[0].split('').reverse().join('').replace(/(\d{3})(?=\d)/g, '$1,').split('').reverse().join('');
-            let decimalPart = parts[1] || '';
-            decimalPart = decimalPart.length > 2 ? decimalPart.substring(0, 2) : decimalPart;
-            const formattedValue = decimalPart ? `${integerPart}.${decimalPart}` : integerPart;
-            vm.rawValue = value;
-            vm.formattedValue = formattedValue.concat(" บาท");
         }
     }
 };

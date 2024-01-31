@@ -1,3 +1,4 @@
+
 .prompt-header {
   position: absolute;
   top: 5%;
@@ -319,6 +320,30 @@
   margin-left: 20px;
 }
 
+.modal-content {
+  margin-top: 50px;
+  margin-left: 47px;
+}
+
+.qr-align-center {
+  padding-left: 30px;
+}
+
+.qr-suggestion-message {
+  text-align: center;
+  font-size: 14px;
+}
+
+.method-second-icon {
+  padding-left: 50px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media only screen and (max-width: 1024px) {
+}
 @media only screen and (max-width: 1440px) {
   .prompt-header {
     left: 44%;
@@ -528,7 +553,7 @@
   .payment-information-card {
     left: 0%;
   }
-  
+
   .logo-image {
     left: 28%;
   }

@@ -25,14 +25,14 @@ describe('PaymentMethodMobileBanking.vue', () => {
   })
 
   it('formats total 2 float value correctly', () => {
-    store.total = '1234567.8910 บาท'
+    store.total = '1234567.8910'
     wrapper = mount(PaymentMethodMobileBanking)
     expect(wrapper.vm.rawValue).toBe('1234567.8910')
     expect(wrapper.vm.formattedValue).toBe('1,234,567.89 บาท')
   })
 
   it('formats total value correctly', () => {
-    store.total = '1234567 บาท'
+    store.total = '1234567'
     wrapper = mount(PaymentMethodMobileBanking)
     expect(wrapper.vm.rawValue).toBe('1234567')
     expect(wrapper.vm.formattedValue).toBe('1,234,567 บาท')

@@ -2,5 +2,5 @@ projectKey=Promptrub-portal-ui
 serverUrl=http://192.168.252.211:9000
 serverVersion=10.3.0.82913
 dashboardUrl=http://192.168.252.211:9000/dashboard?id=Promptrub-portal-ui
-ceTaskId=AY1Eq1bKM9DAOP7Kp08I
-ceTaskUrl=http://192.168.252.211:9000/api/ce/task?id=AY1Eq1bKM9DAOP7Kp08I
+ceTaskId=AY1ZqezFh14i5IqskMEl
+ceTaskUrl=http://192.168.252.211:9000/api/ce/task?id=AY1ZqezFh14i5IqskMEl

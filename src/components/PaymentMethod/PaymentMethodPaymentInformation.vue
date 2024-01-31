@@ -10,13 +10,13 @@
                 <div class="prompt-content-header payment-information-content">
                     <label>ชื่อร้านค้า</label>
                 </div>
-                <div style="padding-left: 30px;" class="payment-information-content-header">
+                <div class="payment-information-content-header qr-align-center ">
                     <label>{{ paymentMethodStore.shopName }}</label>
                 </div>
                 <div class="prompt-content-header payment-information-content">
                     <label>จำนวนเงินที่ต้องชำระ</label>
                 </div>
-                <div style="padding-left: 30px;" class="prompt-content-header qr-code-header">
+                <div class="prompt-content-header qr-align-center qr-code-header">
                     <input class="information-total" type="text" id="numericInput" v-model="formattedValue" disabled />
                 </div>
             </div>
@@ -26,6 +26,7 @@
 
 <script>
 import { usePaymentMethodStore } from '@/stores/PaymentMethodStore'
+import { formatCurrency } from '@/assets/utilities/util.js'
 export default {
     data() {
         return {
@@ -35,26 +36,16 @@ export default {
         };
     },
     mounted() {
-        let vm = this
-        const inputValue = vm.paymentMethodStore.total.replace(/[^0-9.]/g, '');
-            vm.formatValue(inputValue);
+        this.formatValue(this.paymentMethodStore.total)
     },
     methods: {
         handleInput(event) {
-            let vm = this;
-            const inputValue = event.target.value.replace(/[^0-9.]/g, '');
-            vm.formatValue(inputValue);
+            this.formatValue(event.target.value)
         },
         formatValue(value) {
-            let vm = this;
-            const parts = value.split('.');
-            const integerPart = parts[0].split('').reverse().join('').replace(/(\d{3})(?=\d)/g, '$1,').split('').reverse().join('');
-            let decimalPart = parts[1] || '';
-            decimalPart = decimalPart.length > 2 ? decimalPart.substring(0, 2) : decimalPart;
-            const formattedValue = decimalPart ? `${integerPart}.${decimalPart}` : integerPart;
-            vm.rawValue = value;
-            vm.formattedValue = formattedValue.concat(" บาท");
-        }
+            this.rawValue = value
+            this.formattedValue = formatCurrency(value)
+        },
     }
 }
 </script>

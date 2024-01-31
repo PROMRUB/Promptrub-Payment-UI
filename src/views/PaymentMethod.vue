@@ -11,9 +11,9 @@ const paymentMethodStore = usePaymentMethodStore();
 </script>
 
 <template style="text-align:center;">
-  <Teleport to="#modal">
-    <div v-show="paymentMethodStore.isShowModal">
-      <CancelModal @closeModal="onClickCloseModal" @cancelModal="onClickCancelConfirmed" />
+  <Teleport to="body">
+    <div id="modal" v-show="paymentMethodStore.isShowModal" class="modal">
+      <CancelModal onClickCloseModal="onClickCloseModal" onClickCancelConfirmed="onClickCancelConfirmed" />
     </div>
   </Teleport>
 
@@ -39,7 +39,6 @@ const paymentMethodStore = usePaymentMethodStore();
       <PaymentMethodQRCode @openModal="onClickOpenModal" />
     </div>
     <div v-show="isCardStep">
-      <PaymentMethodSuccessful />
     </div>
     <div v-show="isSuccessfulStep">
       <PaymentMethodSuccessful />
@@ -47,6 +46,9 @@ const paymentMethodStore = usePaymentMethodStore();
   </div>
   <div v-show="isShowShortBg" :key="reactive" class="background-body-short">
     <div v-show="isMobileBankingStep">
+      <PaymentMethodMobileBanking @openModal="onClickOpenModal" />
+    </div>
+    <div v-show="isCardStep">
       <PaymentMethodMobileBanking @openModal="onClickOpenModal" />
     </div>
   </div>
@@ -78,66 +80,66 @@ export default {
     };
   },
   mounted() {
+    this.updateComponent()
   },
   updated() {
-    let vm = this;
-    if (vm.paymentMethodStore.step == 1) {
-      vm.isShowShortBg = false;
-      vm.isShowLongBg = true;
-      vm.paymentMethodStore.isShowLogo = true;
-      vm.paymentMethodStore.msg = 'เลือกวิธีการชำระ'
-      vm.isSelectMethodStep = true;
-    }
-    else if (vm.paymentMethodStore.step == 21) {
-      vm.isShowShortBg = true;
-      vm.isShowLongBg = false;
-      vm.paymentMethodStore.isShowLogo = false;
-      vm.paymentMethodStore.isShowInformation = true;
-      vm.paymentMethodStore.msg = 'Mobile Banking'
-      vm.isSelectMethodStep = false;
-      vm.isMobileBankingStep = true;
-    }
-    else if (vm.paymentMethodStore.step == 22) {
-      vm.isShowShortBg = false;
-      vm.isShowLongBg = true;
-      vm.paymentMethodStore.msg = 'ชำระเงินด้วย QR Code'
-      vm.isSelectMethodStep = false;
-      vm.isQRCodeStep = true;
-    }
-    else if (vm.paymentMethodStore.step == 23) {
-      vm.isShowShortBg = false;
-      vm.isShowLongBg = true;
-      vm.paymentMethodStore.msg = 'Credit / Debit Card'
-      vm.isSelectMethodStep = false;
-      vm.isCardStep = true;
-    }
-    else if (vm.paymentMethodStore.step == 4) {
-      vm.isShowShortBg = false;
-      vm.isShowLongBg = true;
-      vm.isSuccessfulStep = true;
-      vm.isSelectMethodStep = false;
-      vm.paymentMethodStore.msg = 'ชำระเงินสำเร็จ'
-      setTimeout(() => {
-        window.location.href = 'https://www.google.com'
-      }, 15000);
-    }
+    this.updateComponent()
   },
   methods: {
+    updateComponent() {
+      if (this.paymentMethodStore.step == 1) {
+        this.isShowShortBg = false;
+        this.isShowLongBg = true;
+        this.paymentMethodStore.isShowLogo = true;
+        this.paymentMethodStore.msg = 'เลือกวิธีการชำระเงิน'
+        this.isSelectMethodStep = true;
+      }
+      else if (this.paymentMethodStore.step == 21) {
+        this.isShowShortBg = true;
+        this.isShowLongBg = false;
+        this.paymentMethodStore.isShowLogo = false;
+        this.paymentMethodStore.isShowInformation = true;
+        this.paymentMethodStore.msg = 'Mobile Banking'
+        this.isSelectMethodStep = false;
+        this.isMobileBankingStep = true;
+      }
+      else if (this.paymentMethodStore.step == 22) {
+        this.isShowShortBg = false;
+        this.isShowLongBg = true;
+        this.paymentMethodStore.msg = 'ชำระเงินด้วย QR Code'
+        this.isSelectMethodStep = false;
+        this.isQRCodeStep = true;
+      }
+      else if (this.paymentMethodStore.step == 23) {
+        this.isShowShortBg = true;
+        this.isShowLongBg = false;
+        this.paymentMethodStore.msg = 'Credit / Debit Card'
+        this.isSelectMethodStep = false;
+        this.isCardStep = true;
+      }
+      else if (this.paymentMethodStore.step == 4) {
+        this.isShowShortBg = false;
+        this.isShowLongBg = true;
+        this.isSuccessfulStep = true;
+        this.isSelectMethodStep = false;
+        this.paymentMethodStore.msg = 'ชำระเงินสำเร็จ'
+        setTimeout(() => {
+          window.location.href = 'https://www.google.com'
+        }, 15000);
+      }
+    },
     onClickCloseModal() {
-      let vm = this;
-      vm.paymentMethodStore.isShowModal = false
+      this.paymentMethodStore.isShowModal = false
     },
     onClickOpenModal() {
-      let vm = this;
-      vm.paymentMethodStore.isShowModal = true
+      this.paymentMethodStore.isShowModal = true
     },
     onClickCancelConfirmed() {
       window.location.href = 'https://www.google.com'
     },
     onClickSelectMethod(value) {
-      let vm = this
-      vm.reactive++
-      vm.paymentMethodStore.step = value
+      this.reactive++
+      this.paymentMethodStore.step = value
     }
   }
 };

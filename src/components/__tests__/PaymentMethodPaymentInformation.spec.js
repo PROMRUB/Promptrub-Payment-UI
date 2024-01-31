@@ -18,14 +18,14 @@ describe('PaymentMethodPaymentInformation.vue', () => {
   })
 
   it('formats total value correctly on mounted', () => {
-    store.total = '1234567.8910 บาท'
+    store.total = '1234567.8910'
     wrapper = mount(PaymentMethodPaymentInformation)
     expect(wrapper.vm.rawValue).toBe('1234567.8910')
     expect(wrapper.vm.formattedValue).toBe('1,234,567.89 บาท')
   })
 
   it('formats total value correctly on mounted', () => {
-    store.total = '1234567 บาท'
+    store.total = '1234567'
     wrapper = mount(PaymentMethodPaymentInformation)
     expect(wrapper.vm.rawValue).toBe('1234567')
     expect(wrapper.vm.formattedValue).toBe('1,234,567 บาท')
@@ -34,7 +34,7 @@ describe('PaymentMethodPaymentInformation.vue', () => {
   it('formats input value correctly', async () => {
     const inputEvent = {
       target: {
-        value: '9876543.210 บาท'
+        value: '9876543.210'
       }
     }
     await wrapper.vm.handleInput(inputEvent)
@@ -45,7 +45,7 @@ describe('PaymentMethodPaymentInformation.vue', () => {
   it('formats input value correctly', async () => {
     const inputEvent = {
       target: {
-        value: '9876543 บาท'
+        value: '9876543'
       }
     }
     await wrapper.vm.handleInput(inputEvent)

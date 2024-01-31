@@ -17,6 +17,11 @@ describe('PaymentMethodQRCode.vue', () => {
     wrapper = mount(PaymentMethodQRCode, { global: { plugins: [app] } })
   })
 
+  it('renders correctly', () => {
+    const wrapper = mount(PaymentMethodQRCode)
+    expect(wrapper.html()).toContain('ชำระสินค้าหรือบริการ')
+  })
+
   it('renders shop name correctly', () => {
     store.shopName = 'CBT Shop'
     wrapper = mount(PaymentMethodQRCode)
@@ -24,20 +29,40 @@ describe('PaymentMethodQRCode.vue', () => {
     expect(shopNameLabel.text()).toBe('CBT Shop')
   })
 
-  it('formats total value correctly on mounted', () => {
+  it('formats total value 2float correctly on mounted', () => {
+    store.total = '1234567.8910'
+    wrapper = mount(PaymentMethodQRCode)
     expect(wrapper.vm.rawValue).toBe('1234567.8910')
     expect(wrapper.vm.formattedValue).toBe('1,234,567.89 บาท')
   })
 
-  it('formats input value correctly', async () => {
+  it('formats total value correctly on mounted', () => {
+    store.total = '1234567'
+    wrapper = mount(PaymentMethodQRCode)
+    expect(wrapper.vm.rawValue).toBe('1234567')
+    expect(wrapper.vm.formattedValue).toBe('1,234,567 บาท')
+  })
+
+  it('formats input value 2float correctly', async () => {
     const inputEvent = {
       target: {
-        value: '9876543.210 บาท'
+        value: '9876543.210'
       }
     }
     await wrapper.vm.handleInput(inputEvent)
     expect(wrapper.vm.rawValue).toBe('9876543.210')
     expect(wrapper.vm.formattedValue).toBe('9,876,543.21 บาท')
+  })
+
+  it('formats input value correctly', async () => {
+    const inputEvent = {
+      target: {
+        value: '9876543'
+      }
+    }
+    await wrapper.vm.handleInput(inputEvent)
+    expect(wrapper.vm.rawValue).toBe('9876543')
+    expect(wrapper.vm.formattedValue).toBe('9,876,543 บาท')
   })
 
   it('emits openModal event on click', async () => {

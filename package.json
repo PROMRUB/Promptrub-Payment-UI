@@ -13,7 +13,7 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "sonar": "sonar-scanner "
+    "sonar": "sonar-scanner"
   },
   "dependencies": {
     "pinia": "^2.1.7",
