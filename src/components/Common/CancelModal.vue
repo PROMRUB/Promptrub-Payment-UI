@@ -3,7 +3,7 @@
 
 <template>
     <main>
-        <img @click="onClickCloseModal" class="close-modal-icon" src="../assets/images/close-modal-icon.svg"
+        <img @click="onClickCloseModal" class="close-modal-icon" src="../../assets/images/close-modal-icon.svg"
             alt="Close Modal Icon" />
         <p style="margin-top:50px;margin-left:47px">ท่านต้องการยกเลิกการชำระเงินหรือไม่</p>
         <div @click="onClickCancelConfirmed" class="accept-modal-btn">
@@ -33,4 +33,4 @@ export default {
         }
     }
 }
-</script>@/stores/PaymentMethodStore
+</script>

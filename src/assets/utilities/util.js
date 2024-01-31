@@ -1,5 +1,4 @@
 const formatCurrency = function (value) {
-  let vm = this
   const parts = value.replace(/[^0-9.]/g, '').split('.')
   const integerPart = parts[0]
     .split('')

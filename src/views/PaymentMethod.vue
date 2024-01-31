@@ -13,7 +13,7 @@ const paymentMethodStore = usePaymentMethodStore();
 <template style="text-align:center;">
   <Teleport to="body">
     <div id="modal" v-show="paymentMethodStore.isShowModal" class="modal">
-      <CancelModal onClickCloseModal="onClickCloseModal" onClickCancelConfirmed="onClickCancelConfirmed" />
+      <CancelModal @closeModal="onClickCloseModal" @cancelModal="onClickCancelConfirmed" />
     </div>
   </Teleport>
 
@@ -129,6 +129,7 @@ export default {
       }
     },
     onClickCloseModal() {
+      console.log('close')
       this.paymentMethodStore.isShowModal = false
     },
     onClickOpenModal() {

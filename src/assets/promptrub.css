@@ -1,4 +1,3 @@
-
 .prompt-header {
   position: absolute;
   top: 5%;
@@ -15,8 +14,8 @@
   position: absolute;
   width: 136.36px;
   height: 13;
-  top: 7.5%;
-  left: 35%;
+  top: 17%;
+  left: 39%;
   transform: rotate(23.72deg);
 }
 
@@ -24,8 +23,8 @@
   position: absolute;
   width: 141.23px;
   height: 30px;
-  top: 25%;
-  left: 52%;
+  top: 33%;
+  left: 51%;
   transform: rotate(180 deg);
 }
 
@@ -33,24 +32,24 @@
   position: absolute;
   width: 600px;
   height: 596px;
-  left: 29%;
-  top: 216px;
+  left: 35.5%;
+  top: 35%;
   background: #fff6e6;
-  border-radius: 50px 50px 0px 0px;
+  border-radius: 50px 50px 50px 50px;
 }
 
 .background-body-short {
   position: absolute;
   width: 600px;
   height: 496px;
-  left: 29%;
-  top: 316px;
+  left: 35.5%;
+  top: 35%;
   background: #fff6e6;
-  border-radius: 50px 50px 0px 0px;
+  border-radius: 50px 50px 50px 50px;
 }
 
 .logo-image {
-  top: 13%;
+  top: 22%;
   left: 43.5%;
   position: absolute;
   z-index: 3;
@@ -68,8 +67,8 @@
   position: absolute;
   width: 59.56px;
   height: 50px;
-  top: 30%;
-  left: 40%;
+  top: 32%;
+  left: 41%;
   z-index: 3;
 }
 
@@ -77,8 +76,8 @@
   position: absolute;
   width: 34.2px;
   height: 30px;
-  top: 16.5%;
-  left: 55%;
+  top: 25%;
+  left: 53%;
   z-index: 3;
 }
 
@@ -87,7 +86,7 @@
   width: 12.97px;
   height: 15px;
   top: 34%;
-  left: 57%;
+  left: 53%;
   z-index: 3;
 }
 .prompt-content-header {
@@ -199,13 +198,18 @@
   position: absolute;
   width: 327px;
   height: 172px;
-  left: 38%;
-  top: 292px;
+  left: 40.5%;
+  top: 40%;
 
   background: #ffffff;
   border-radius: 15px;
 
   font-family: 'Kanit', sans-serif;
+
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .close-modal-icon {
@@ -213,7 +217,7 @@
   width: 50px;
   height: 50px;
   top: -25px;
-  left: 40%;
+  left: 42%;
 }
 
 .accept-modal-btn {
@@ -301,7 +305,7 @@
   position: absolute;
   width: 500px;
   height: 235px;
-  left: 32.25%;
+  left: 37.25%;
   top: 10%;
   color: #11285c;
   background: #fff3f3;
@@ -342,8 +346,6 @@
   text-align: center;
 }
 
-@media only screen and (max-width: 1024px) {
-}
 @media only screen and (max-width: 1440px) {
   .prompt-header {
     left: 44%;
@@ -351,6 +353,14 @@
 
   .logo-image {
     left: 44%;
+  }
+
+  .background-body {
+    left: 30%;
+  }
+
+  .background-body-short {
+    left: 30%;
   }
 
   .qr-code-image {
@@ -369,50 +379,58 @@
 
   .save-btn {
     width: 137px;
-    left: 13%;
+    left: 22%;
   }
 
   .accept-text {
     margin-left: 50px;
   }
+
+  .modal {
+    left: 38.5%;
+  }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1281px) {
   .prompt-header {
     left: 41.5%;
   }
 
   .background-image1 {
-    top: 12.5%;
+    top: 17%;
     left: 35%;
   }
 
   .background-image2 {
-    top: 30%;
+    top: 29%;
     left: 52%;
     transform: rotate(180 deg);
   }
 
   .background-body {
+    top: 32%;
     width: 376px;
-    left: 31.5%;
+    left: 34%;
   }
 
   .background-body-short {
+    top: 41%;
     width: 376px;
-    left: 31.5%;
+    left: 34%;
   }
 
   .payment-information-card {
     width: 376px;
-    left: 31.5%;
+    left: 34%;
   }
 
   .logo-image {
+    top: 15%;
     left: 41.5%;
   }
 
   .coin-image1 {
+    top: 30%;
     left: 35%;
   }
 
@@ -421,6 +439,7 @@
   }
 
   .coin-image3 {
+    top: 31.5%;
     left: 60%;
   }
 
@@ -433,15 +452,150 @@
   }
 
   .modal {
-    left: 33.5%;
+    top: 55%;
+    left: 36%;
   }
 
   .cancel-btn-xl {
     width: 315px;
   }
+
   .accept-text-xl {
     color: white;
     margin-left: 132.5px;
+  }
+
+  .save-btn {
+    left: 14%;
+  }
+}
+
+
+@media only screen and (max-width: 1025px) {
+  .prompt-header {
+    left: 41.5%;
+  }
+
+  .background-image1 {
+    top: 17%;
+    left: 35%;
+  }
+
+  .background-image2 {
+    top: 30%;
+    left: 52%;
+    transform: rotate(180 deg);
+  }
+
+  .background-body {
+    top: 32%;
+    width: 376px;
+    left: 31.5%;
+  }
+
+  .background-body-short {
+    top: 32%;
+    width: 376px;
+    left: 31.5%;
+  }
+
+  .payment-information-card {
+    width: 376px;
+    left: 31.5%;
+  }
+
+  .logo-image {
+    top: 19%;
+    left: 41.5%;
+  }
+
+  .coin-image1 {
+    top: 30%;
+    left: 35%;
+  }
+
+  .coin-image2 {
+    left: 58%;
+  }
+
+  .coin-image3 {
+    top: 31.5%;
+    left: 60%;
+  }
+
+  .successful-icon {
+    margin: 10% 27% 5% 27%;
+  }
+
+  .qr-code-image {
+    margin: 20px 0px 20px 100px;
+  }
+
+  .modal {
+    top: 55%;
+    left: 34%;
+  }
+
+  .cancel-btn-xl {
+    width: 315px;
+  }
+
+  .accept-text-xl {
+    color: white;
+    margin-left: 132.5px;
+  }
+
+  .save-btn {
+    left: 14%;
+  }
+}
+
+@media only screen and (max-width: 821px) {
+  .prompt-header {
+    left: 40%;
+  }
+
+  .background-image1 {
+    left: 30%;
+  }
+
+  .background-body {
+    left: 25%;
+  }
+
+  .background-body-short {
+    left: 25%;
+  }
+
+  .payment-information-card {
+    left: 25%;
+  }
+
+  .logo-image {
+    left: 38.5%;
+  }
+
+  .coin-image1 {
+    left: 30%;
+  }
+
+  .coin-image2 {
+    left: 60%;
+  }
+
+  .coin-image3 {
+    left: 60%;
+  }
+
+  .successful-icon {
+    margin: 10% 27.5% 5% 27.5%;
+  }
+
+  .modal {
+    left: 28.5%;
+  }
+  .save-btn {
+    left: 12%;
   }
 }
 
@@ -491,6 +645,107 @@
   }
 }
 
+@media only screen and (max-width: 541px) {
+  .prompt-header {
+    left: 36%;
+  }
+
+  .background-image1 {
+    left: 10%;
+  }
+
+  .background-image2 {
+    top: 28%;
+  }
+
+  .background-body {
+    left: 15%;
+  }
+
+  .background-body-short {
+    top: 45%;
+    left: 15%;
+  }
+
+  .payment-information-card {
+    left: 15%;
+  }
+
+  .logo-image {
+    top: 12.5%;
+    left: 33%;
+  }
+
+  .coin-image1 {
+    top: 28%;
+    left: 21%;
+  }
+
+  .coin-image2 {
+    top: 20%;
+    left: 70%;
+  }
+
+  .coin-image3 {
+    left: 70%;
+  }
+
+  .modal {
+    left: 19.5%;
+  }
+
+  .save-btn {
+    left: 12%;
+  }
+}
+
+@media only screen and (max-width: 431px) {
+  .prompt-header {
+    left: 30%;
+  }
+
+  .background-image1 {
+    left: 10%;
+  }
+
+  .background-body {
+    left: 5%;
+  }
+
+  .background-body-short {
+    top: 37%;
+    left: 5%;
+  }
+
+  .payment-information-card {
+    left: 5%;
+  }
+
+  .logo-image {
+    left: 29.5%;
+  }
+
+  .coin-image1 {
+    left: 15%;
+  }
+
+  .coin-image2 {
+    left: 70%;
+  }
+
+  .coin-image3 {
+    left: 70%;
+  }
+
+  .modal {
+    left: 11%;
+  }
+
+  .save-btn {
+    left: 12%;
+  }
+}
+
 @media only screen and (max-width: 426px) {
   .prompt-header {
     left: 30%;
@@ -530,6 +785,98 @@
 
   .modal {
     left: 11%;
+  }
+}
+
+@media only screen and (max-width: 413px) {
+  .prompt-header {
+    left: 30%;
+  }
+
+  .background-image1 {
+    left: 10%;
+  }
+
+  .background-body {
+    left: 4%;
+  }
+
+  .background-body-short {
+    left: 4%;
+  }
+
+  .payment-information-card {
+    left: 4%;
+  }
+
+  .logo-image {
+    left: 29.5%;
+  }
+
+  .coin-image1 {
+    left: 15%;
+  }
+
+  .coin-image2 {
+    left: 70%;
+  }
+
+  .coin-image3 {
+    left: 70%;
+  }
+
+  .modal {
+    top: 43%;
+    left: 11%;
+  }
+}
+
+@media only screen and (max-width: 391px) {
+  .prompt-header {
+    left: 27%;
+  }
+
+  .background-image1 {
+    left: 5%;
+  }
+
+  .background-body {
+    left: 1.75%;
+  }
+
+  .background-body-short {
+    top: 39%;
+    left: 1.75%;
+  }
+
+  .payment-information-card {
+    left: 1.5%;
+  }
+
+  .logo-image {
+    top: 20%;
+    left: 28%;
+  }
+
+  .coin-image1 {
+    left: 10%;
+  }
+
+  .coin-image2 {
+    left: 75%;
+  }
+
+  .coin-image3 {
+    left: 75%;
+  }
+
+  .modal {
+    top: 45%;
+    left: 7%;
+  }
+
+  .save-btn {
+    left: 12%;
   }
 }
 
