@@ -12,44 +12,43 @@ const paymentMethodStore = usePaymentMethodStore();
 
 <template style="text-align:center;">
   <Teleport to="body">
-    <div id="modal" v-show="paymentMethodStore.isShowModal" class="modal">
-      <CancelModal @closeModal="onClickCloseModal" @cancelModal="onClickCancelConfirmed" />
-    </div>
+      <div id="modal" v-show="paymentMethodStore.isShowModal" class="modal">
+        <CancelModal @closeModal="onClickCloseModal" @cancelModal="onClickCancelConfirmed" />
+      </div>
   </Teleport>
 
-  <label class="prompt-header">{{ paymentMethodStore.msg }}</label>
+  <div>
+    <label class="prompt-header">{{ paymentMethodStore.msg }}</label>
+  </div>
   <div>
     <div v-show="paymentMethodStore.isShowLogo">
       <img class="logo-image" src="../assets/images/logo.svg" alt="Logo Image">
-      <img class="background-image1" src="../assets/images/background-1.svg" alt="background Image 1">
-      <img class="background-image2" src="../assets/images/background-2.svg" alt="background Image 2">
-      <img class="coin-image1" src="../assets/images/coin-1.svg" alt="coin Image 1">
-      <img class="coin-image2" src="../assets/images/coin-2.svg" alt="coin Image 2">
-      <img class="coin-image3" src="../assets/images/coin-3.svg" alt="coin Image 3">
     </div>
     <div v-show="paymentMethodStore.isShowInformation">
       <PaymentMethodPaymentInformation />
     </div>
   </div>
-  <div v-show="isShowLongBg" :key="reactive" class="background-body">
-    <div v-show="isSelectMethodStep">
-      <PaymentMethodSelect @selectedMethod="onClickSelectMethod" />
+  <div style="text-align: start;">
+    <div v-show="isShowLongBg" :key="reactive" class="background-body">
+      <div v-show="isSelectMethodStep">
+        <PaymentMethodSelect @selectedMethod="onClickSelectMethod" />
+      </div>
+      <div v-show="isQRCodeStep">
+        <PaymentMethodQRCode @openModal="onClickOpenModal" />
+      </div>
+      <div v-show="isCardStep">
+      </div>
+      <div v-show="isSuccessfulStep">
+        <PaymentMethodSuccessful />
+      </div>
     </div>
-    <div v-show="isQRCodeStep">
-      <PaymentMethodQRCode @openModal="onClickOpenModal" />
-    </div>
-    <div v-show="isCardStep">
-    </div>
-    <div v-show="isSuccessfulStep">
-      <PaymentMethodSuccessful />
-    </div>
-  </div>
-  <div v-show="isShowShortBg" :key="reactive" class="background-body-short">
-    <div v-show="isMobileBankingStep">
-      <PaymentMethodMobileBanking @openModal="onClickOpenModal" />
-    </div>
-    <div v-show="isCardStep">
-      <PaymentMethodMobileBanking @openModal="onClickOpenModal" />
+    <div v-show="isShowShortBg" :key="reactive" class="background-body-short">
+      <div v-show="isMobileBankingStep">
+        <PaymentMethodMobileBanking @openModal="onClickOpenModal" />
+      </div>
+      <div v-show="isCardStep">
+        <PaymentMethodMobileBanking @openModal="onClickOpenModal" />
+      </div>
     </div>
   </div>
 </template>
