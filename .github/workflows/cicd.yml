@@ -1,4 +1,4 @@
-name: Promrub-Portal-UI
+name: Promrub-Payment-UI
 permissions:
   contents: read
   actions: read
@@ -24,7 +24,7 @@ jobs:
       with:
         status: ${{ job.status }}
         fields: repo,message,commit,author,ref,workflow # selectable (default: repo,message)
-        text: "Start unit testing [Promrub-Portal-UI]"
+        text: "Start unit testing [Promrub-Payment-UI]"
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }} # required
 
@@ -51,7 +51,7 @@ jobs:
       with:
         status: ${{ job.status }}
         fields: repo,message,commit,author,ref,workflow # selectable (default: repo,message)
-        text: "Done unit testing [Promrub-Portal-UI] with status [${{job.status}}]"
+        text: "Done unit testing [Promrub-Payment-UI] with status [${{job.status}}]"
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }} # required
 
@@ -66,7 +66,7 @@ jobs:
       with:
         status: ${{ job.status }}
         fields: repo,message,commit,author,ref,workflow # selectable (default: repo,message)
-        text: "Start deploying [Promrub-Portal-UI] [${{ needs.build1.outputs.imageTag }}] to [${{ needs.build1.outputs.autoDeployEnv }}]..."
+        text: "Start deploying [Promrub-Payment-UI] [${{ needs.build1.outputs.imageTag }}] to [${{ needs.build1.outputs.autoDeployEnv }}]..."
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }} # required
 
@@ -77,7 +77,7 @@ jobs:
         export ENVIRONMENT=${{ needs.build1.outputs.autoDeployEnv }}
         export ARGOCD_BRANCH=${{ needs.build1.outputs.autoDeployBranch }}
         export VALUE_FILE_DIR="promrub-common"
-        export VALUE_FILE=${VALUE_FILE_DIR}/values-portal-tags-${ARGOCD_BRANCH}.yaml
+        export VALUE_FILE=${VALUE_FILE_DIR}/values-payment-tags-${ARGOCD_BRANCH}.yaml
         export IMAGE_TAG1=${{ needs.build1.outputs.imageTag }}
         git config --global user.email "cicd-auto@prom.co.th"
         git config --global user.name "CICD"
@@ -85,12 +85,12 @@ jobs:
         git clone "https://cicd-token:${GH_TOKEN}@github.com/PROMDevOps/PROMRUB-Deployment.git" deployment
         cd deployment
         git checkout ${ARGOCD_BRANCH}
-        cp ${VALUE_FILE_DIR}/values-portal-template.yaml ${VALUE_FILE}
+        cp ${VALUE_FILE_DIR}/values-payment-template.yaml ${VALUE_FILE}
         sed -i "s#<<image-tag>>#${IMAGE_TAG1}#g" ${VALUE_FILE}
         ls -lrt
         cat ${VALUE_FILE}
 
-        git add ${VALUE_FILE}; git commit --m "Update image tag by auto Promptrub-Portal-UI deploy script"; git push
+        git add ${VALUE_FILE}; git commit --m "Update image tag by auto Promptrub-Payment-UI deploy script"; git push
 
     - name: Slack notification end
       if: always()
@@ -98,7 +98,7 @@ jobs:
       with:
         status: ${{ job.status }}
         fields: repo,message,commit,author,ref,workflow # selectable (default: repo,message)
-        text: "Done deploying [Promrub-Portal-UI] [${{ needs.build1.outputs.imageTag }}] to [${{ needs.build1.outputs.autoDeployEnv }}]"
+        text: "Done deploying [Promrub-Payment-UI] [${{ needs.build1.outputs.imageTag }}] to [${{ needs.build1.outputs.autoDeployEnv }}]"
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }} # required
 
@@ -107,7 +107,7 @@ jobs:
     needs: [ unittest ]
     strategy:
       matrix:
-        service: [ "promrub-portal-ui" ]
+        service: [ "promrub-payment-ui" ]
     outputs:
       imageTag: ${{ steps.prep.outputs.version }}
       autoDeployEnv: ${{ steps.prep.outputs.deployEnv }}
