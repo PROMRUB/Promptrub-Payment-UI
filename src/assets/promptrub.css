@@ -620,26 +620,26 @@
 @media only screen and (max-width: 376px) {
   
   .prompt-header {
-    left: calc(84.5% - 188px);
+    left: calc(55 - 188px);
   }
 
   .background-body {
-    left: calc(55% - 188px);
+    left: calc(50% - 188px);
   }
 
   .background-body-short {
-    left: calc(55% - 188px);
+    left: calc(50% - 188px);
   }
 
   .payment-information-card {
-    left: calc(55% - 188px);
+    left: calc(50% - 188px);
   }
 
   .logo-image {
-    left: calc(76% - 150px);
+    left: calc(65% - 150px);
   }
 
   .modal {
-    left: calc(62% - 188px);
+    left: calc(56.5% - 188px);
   }
 }
