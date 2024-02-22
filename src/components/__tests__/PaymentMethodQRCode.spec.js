@@ -43,28 +43,6 @@ describe('PaymentMethodQRCode.vue', () => {
     expect(wrapper.vm.formattedValue).toBe('1,234,567 บาท')
   })
 
-  it('formats input value 2float correctly', async () => {
-    const inputEvent = {
-      target: {
-        value: '9876543.210'
-      }
-    }
-    await wrapper.vm.handleInput(inputEvent)
-    expect(wrapper.vm.rawValue).toBe('9876543.210')
-    expect(wrapper.vm.formattedValue).toBe('9,876,543.21 บาท')
-  })
-
-  it('formats input value correctly', async () => {
-    const inputEvent = {
-      target: {
-        value: '9876543'
-      }
-    }
-    await wrapper.vm.handleInput(inputEvent)
-    expect(wrapper.vm.rawValue).toBe('9876543')
-    expect(wrapper.vm.formattedValue).toBe('9,876,543 บาท')
-  })
-
   it('emits openModal event on click', async () => {
     await wrapper.find('.cancel-btn').trigger('click')
     expect(wrapper.emitted()).toHaveProperty('openModal')

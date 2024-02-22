@@ -20,7 +20,7 @@
             </div>
             <img class="chevron-icon" src="@/assets/images/chevron-left.svg" alt="Chevron Left" />
         </div>
-        <div class="payment-method-btn payment-method-disabled" >
+        <div class="payment-method-btn payment-method-disabled">
             <img class="method-icon icon-disabled" src="@/assets/images/visa-icon.svg" alt="Visa Icon" />
             <img class="method-icon icon-disabled method-second-icon" src="@/assets/images/master-card-icon.svg" alt="Master Card Icon" />
             <div class="method-text method-second-icon" >
