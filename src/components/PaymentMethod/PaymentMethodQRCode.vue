@@ -9,7 +9,7 @@
         <div class="prompt-content-header qr-align-center qr-code-header qr-code-header-shopname">
             <label>{{ paymentMethodStore.shopName }}</label>
         </div>
-        <img class="qr-code-image" src="../../assets/images/qr-code.svg" alt="QR Code" />
+        <img class="qr-code-image" :src="imageSrc" alt="QR Code" />
         <div class="prompt-content-header qr-align-center qr-code-header">
             <label>ยอดชำระทั้งหมด</label>
         </div>
@@ -19,7 +19,7 @@
         <div class="prompt-content-header qr-code-content qr-suggestion-message">
             <label>แสกนคิวอาร์โค้ดนี้ด้วยแอปพลิเคชั่นของธนาคารใดๆ</label>
         </div>
-        <div class="save-btn">
+        <div @click="onClickDownloadImage" class="save-btn">
             <label class="accept-text">บันทึก</label>
         </div>
         <div @click="onClickOpenMethod" class="cancel-btn">
@@ -38,6 +38,7 @@ export default {
     },
     data() {
         return {
+            imageSrc: "../../assets/images/qr-code.svg",
             rawValue: "",
             formattedValue: "",
             paymentMethodStore: usePaymentMethodStore(),
@@ -45,16 +46,32 @@ export default {
     },
     mounted() {
         this.formatValue(this.paymentMethodStore.total)
+        this.generateQrCode()
     },
     updated() {
+        this.formatValue(this.paymentMethodStore.total)
+        this.generateQrCode()
     },
     methods: {
+        generateQrCode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orgId = urlParams.get('orgId');
+            const transactionId = urlParams.get('transactionId');
+            this.paymentMethodStore.generateQrCode(orgId, transactionId);
+            this.imageSrc = "data:image/png;base64," + this.paymentMethodStore.qrImage;
+        },
         handleInput(event) {
             this.formatValue(event.target.value)
         },
         formatValue(value) {
             this.rawValue = value
             this.formattedValue = formatCurrency(value)
+        },
+        onClickDownloadImage() {
+            const link = document.createElement('a');
+            link.href = this.imageSrc;
+            link.download = 'QrImage.png';
+            link.click();
         },
         onClickOpenMethod() {
             this.$emit('openModal');

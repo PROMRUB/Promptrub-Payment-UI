@@ -85,8 +85,13 @@ export default {
     this.updateComponent()
   },
   methods: {
+
     updateComponent() {
       if (this.paymentMethodStore.step == 1) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const orgId = urlParams.get('orgId');
+        const transactionId = urlParams.get('transactionId');
+        this.paymentMethodStore.fetchData(orgId, transactionId)
         this.isShowShortBg = false;
         this.isShowLongBg = true;
         this.paymentMethodStore.isShowLogo = true;
