@@ -27,8 +27,8 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
 
   async function fetchData(orgId, transactionId) {
     try {
-      const response = await axios.get(`https://localhost:44369/v1/api/Payment/org/${orgId}/action/GetPaymentDetails/${transactionId}`)
-      // const response = await axios.get(`https://dev-single-payment-api.promrub.com/v1/api/Payment/org/${orgId}/action/GetPaymentDetails/${transactionId}`)
+      // const response = await axios.get(`https://localhost:44369/v1/api/Payment/org/${orgId}/action/GetPaymentDetails/${transactionId}`)
+      const response = await axios.get(`https://dev-single-payment-api.promrub.com/v1/api/Payment/org/${orgId}/action/GetPaymentDetails/${transactionId}`)
       this.shopName = response.data.data.orgName
       this.refNo = response.data.data.refTransactionId
       this.total = response.data.data.prices.toString()
@@ -39,8 +39,8 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
 
   async function generateQrCode(orgId, transactionId) {
     try {
-      const response = await axios.get(`https://localhost:44369/v1/api/Payment/org/${orgId}/action/GenerateQr30/${transactionId}`)
-      // const response = await axios.get(`https://dev-single-payment-api.promrub.com/v1/api/Payment/org/${orgId}/action/GenerateQr30/${transactionId}`)
+      // const response = await axios.get(`https://localhost:44369/v1/api/Payment/org/${orgId}/action/GenerateQr30/${transactionId}`)
+      const response = await axios.get(`https://dev-single-payment-api.promrub.com/v1/api/Payment/org/${orgId}/action/GenerateQr30/${transactionId}`)
       this.qrImage = response.data.data.qrImage
     } catch (error) {
       console.error(error)
