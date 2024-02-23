@@ -214,10 +214,11 @@
 }
 
 .cancel-btn {
+  top: calc(95% - 39px);
   position: absolute;
   width: 250px;
   height: 39px;
-  left: 51%;
+  left: 53%;
   bottom: 10%;
   padding-top: 7px;
   background: #ff0000;
@@ -225,6 +226,7 @@
 }
 
 .cancel-btn-xl {
+  top: calc(95% - 39px);
   position: absolute;
   width: 500px;
   height: 39px;
@@ -236,10 +238,11 @@
 }
 
 .save-btn {
+  top: calc(95% - 39px);
   position: absolute;
   width: 250px;
   height: 39px;
-  left: 7%;
+  left: 5%;
   bottom: 10%;
   padding-top: 7px;
   background: #11285c;
@@ -290,7 +293,6 @@
 }
 
 .qr-suggestion-message {
-  text-align: center;
   font-size: 14px;
 }
 
@@ -326,12 +328,12 @@
 
   .cancel-btn {
     width: 137px;
-    left: calc(75% - 68.5px);
+    left: calc(84% - 68.5px);
   }
 
   .save-btn {
     width: 137px;
-    left: calc(22% - 68.5px);
+    left: calc(16% - 68.5px);
   }
 
   .accept-text {
@@ -379,6 +381,11 @@
     left: calc(34% - 163.5px);
   }
 
+  .cancel-btn {
+    width: 137px;
+    left: calc(77% - 68.5px);
+  }
+
   .cancel-btn-xl {
     width: 315px;
   }
@@ -389,7 +396,7 @@
   }
 
   .save-btn {
-    left: calc(22% - 68.5px);
+    left: calc(26% - 68.5px);
   }
 }
 
@@ -439,7 +446,7 @@
   }
 
   .save-btn {
-    left: 14%;
+    left: calc(26% - 68.5px);
   }
 }
 
@@ -472,7 +479,7 @@
     left: calc(52.5% - 188px);
   }
   .save-btn {
-    left: calc(60% - 188px);
+    left: calc(26% - 68.5px);
   }
 }
 
@@ -561,7 +568,7 @@
   }
 
   .save-btn {
-    left: calc(60% - 188px);
+    left: calc(58% - 188px);
   }
 }
 

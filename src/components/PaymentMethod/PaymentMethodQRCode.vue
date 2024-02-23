@@ -1,23 +1,23 @@
 <template>
     <main>
         <div class="prompt-content-header payment-method-header qr-code-header payment-method-divider">
-            <label>ชำระสินค้าหรือบริการ</label>
+            <label>ยินดีรับชำระค่าสินค้าหรือบริการนี้</label>
         </div>
         <div class="prompt-content-header qr-code-content">
-            <label>ชื่อร้านค้า</label>
+            <label>ให้แก่</label>
         </div>
         <div class="prompt-content-header qr-align-center qr-code-header qr-code-header-shopname">
             <label>{{ paymentMethodStore.shopName }}</label>
         </div>
         <img class="qr-code-image" :src="imageSrc" alt="QR Code" />
+        <div class="prompt-content-header qr-code-content qr-suggestion-message">
+            <label>Ref# {{ paymentMethodStore.refNo }}</label>
+        </div>
         <div class="prompt-content-header qr-align-center qr-code-header">
-            <label>ยอดชำระทั้งหมด</label>
+            <label>เป็นจำนวนเงินทั้งสิ้น (บาท)</label>
         </div>
         <div class="prompt-content-header qr-align-center qr-code-header">
             <input class="qr-code-total" type="text" id="numericInput" v-model="formattedValue" disabled />
-        </div>
-        <div class="prompt-content-header qr-code-content qr-suggestion-message">
-            <label>แสกนคิวอาร์โค้ดนี้ด้วยแอปพลิเคชั่นของธนาคารใดๆ</label>
         </div>
         <div @click="onClickDownloadImage" class="save-btn">
             <label class="accept-text">บันทึก</label>

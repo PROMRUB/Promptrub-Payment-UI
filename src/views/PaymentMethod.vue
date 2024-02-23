@@ -85,7 +85,6 @@ export default {
     this.updateComponent()
   },
   methods: {
-
     updateComponent() {
       if (this.paymentMethodStore.step == 1) {
         const urlParams = new URLSearchParams(window.location.search);
