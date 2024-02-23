@@ -13,13 +13,13 @@ describe('PaymentMethodQRCode.vue', () => {
     const app = createApp()
     app.use(createPinia())
     store = usePaymentMethodStore()
-    store.total = '1234567.8910 บาท'
+    store.total = '1234567.8910'
     wrapper = mount(PaymentMethodQRCode, { global: { plugins: [app] } })
   })
 
   it('renders correctly', () => {
     const wrapper = mount(PaymentMethodQRCode)
-    expect(wrapper.html()).toContain('ชำระสินค้าหรือบริการ')
+    expect(wrapper.html()).toContain('ยินดีรับชำระค่าสินค้าหรือบริการนี้')
   })
 
   it('renders shop name correctly', () => {
@@ -33,14 +33,14 @@ describe('PaymentMethodQRCode.vue', () => {
     store.total = '1234567.8910'
     wrapper = mount(PaymentMethodQRCode)
     expect(wrapper.vm.rawValue).toBe('1234567.8910')
-    expect(wrapper.vm.formattedValue).toBe('1,234,567.89 บาท')
+    expect(wrapper.vm.formattedValue).toBe('1,234,567.89')
   })
 
   it('formats total value correctly on mounted', () => {
     store.total = '1234567'
     wrapper = mount(PaymentMethodQRCode)
     expect(wrapper.vm.rawValue).toBe('1234567')
-    expect(wrapper.vm.formattedValue).toBe('1,234,567 บาท')
+    expect(wrapper.vm.formattedValue).toBe('1,234,567.00')
   })
 
   it('emits openModal event on click', async () => {
