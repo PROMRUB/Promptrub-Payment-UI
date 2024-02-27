@@ -7,7 +7,7 @@
 }
 
 .logo-image {
-  top: 100px;
+  top: 50px;
   left: calc(52.75% - 150px);
   position: absolute;
   z-index: 3;
@@ -21,7 +21,7 @@
   position: absolute;
   width: 600px;
   height: 596px;
-  top: 235px;
+  top: 100px;
   left: calc(50% - 300px);
   background: #fff6e6;
   border-radius: 50px 50px 50px 50px;

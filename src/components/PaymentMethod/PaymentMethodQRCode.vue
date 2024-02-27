@@ -9,7 +9,7 @@
         <div class="prompt-content-header qr-align-center qr-code-header qr-code-header-shopname">
             <label>{{ paymentMethodStore.shopName }}</label>
         </div>
-        <img class="qr-code-image" :src="imageSrc" alt="QR Code" />
+        <img class="qr-code-image" :src="paymentMethodStore.qrImage" alt="QR Code" />
         <div class="prompt-content-header qr-code-content qr-suggestion-message">
             <label>Ref# {{ paymentMethodStore.refNo }}</label>
         </div>
@@ -23,7 +23,7 @@
             <label class="accept-text">บันทึก</label>
         </div>
         <div @click="onClickOpenMethod" class="cancel-btn">
-            <label class="accept-text">ยกเลิก</label>
+            <label class="accept-text">ยกเลิก</label> 
         </div>
     </main>
 </template>
@@ -38,7 +38,6 @@ export default {
     },
     data() {
         return {
-            imageSrc: "../../assets/images/qr-code.svg",
             rawValue: "",
             formattedValue: "",
             paymentMethodStore: usePaymentMethodStore(),
@@ -50,7 +49,6 @@ export default {
     },
     updated() {
         this.formatValue(this.paymentMethodStore.total)
-        this.generateQrCode()
     },
     methods: {
         generateQrCode() {
@@ -58,7 +56,6 @@ export default {
             const orgId = urlParams.get('orgId');
             const transactionId = urlParams.get('transactionId');
             this.paymentMethodStore.generateQrCode(orgId, transactionId);
-            this.imageSrc = "data:image/png;base64," + this.paymentMethodStore.qrImage;
         },
         handleInput(event) {
             this.formatValue(event.target.value)

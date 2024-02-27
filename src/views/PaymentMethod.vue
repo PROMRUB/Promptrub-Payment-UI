@@ -21,9 +21,6 @@ const paymentMethodStore = usePaymentMethodStore();
     <label class="prompt-header">{{ paymentMethodStore.msg }}</label>
   </div>
   <div>
-    <div v-show="paymentMethodStore.isShowLogo">
-      <img class="logo-image" src="../assets/images/logo.svg" alt="Logo Image">
-    </div>
     <div v-show="paymentMethodStore.isShowInformation">
       <PaymentMethodPaymentInformation />
     </div>

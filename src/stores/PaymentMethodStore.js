@@ -41,7 +41,7 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
     try {
       // const response = await axios.get(`https://localhost:44369/v1/api/Payment/org/${orgId}/action/GenerateQr30/${transactionId}`)
       const response = await axios.get(`https://dev-single-payment-api.promrub.com/v1/api/Payment/org/${orgId}/action/GenerateQr30/${transactionId}`)
-      this.qrImage = response.data.data.qrImage
+      this.qrImage = "data:image/png;base64," + response.data.data.qrImage
     } catch (error) {
       console.error(error)
     }
