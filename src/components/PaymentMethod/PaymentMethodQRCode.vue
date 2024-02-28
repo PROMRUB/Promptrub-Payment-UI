@@ -1,9 +1,6 @@
 <template>
     <main>
         <div class="prompt-content-header payment-method-header qr-code-header payment-method-divider">
-            <label>ยินดีรับชำระค่าสินค้าหรือบริการนี้</label>
-        </div>
-        <div class="prompt-content-header qr-align-center qr-code-header qr-code-header-shopname">
             <label>{{ paymentMethodStore.shopName }}</label>
         </div>
         <img class="qr-code-image" :src="paymentMethodStore.qrImage" alt="QR Code" />
