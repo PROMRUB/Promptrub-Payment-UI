@@ -8,7 +8,7 @@
             <label>Ref# {{ paymentMethodStore.refNo }}</label>
         </div>
         <div class="prompt-content-header qr-align-center qr-code-header">
-            <label>เป็นจำนวนเงินทั้งสิ้น (บาท)</label>
+            <label>จำนวนเงิน (บาท)</label>
         </div>
         <div class="prompt-content-header qr-align-center qr-code-header">
             <input class="qr-code-total" type="text" id="numericInput" v-model="formattedValue" disabled />
