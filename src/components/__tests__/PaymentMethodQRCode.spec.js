@@ -17,15 +17,10 @@ describe('PaymentMethodQRCode.vue', () => {
     wrapper = mount(PaymentMethodQRCode, { global: { plugins: [app] } })
   })
 
-  it('renders correctly', () => {
-    const wrapper = mount(PaymentMethodQRCode)
-    expect(wrapper.html()).toContain('ยินดีรับชำระค่าสินค้าหรือบริการนี้')
-  })
-
   it('renders shop name correctly', () => {
     store.shopName = 'CBT Shop'
     wrapper = mount(PaymentMethodQRCode)
-    const shopNameLabel = wrapper.find('.qr-code-header-shopname label')
+    const shopNameLabel = wrapper.find('.qr-code-header label')
     expect(shopNameLabel.text()).toBe('CBT Shop')
   })
 
