@@ -21,7 +21,7 @@
   position: absolute;
   width: 600px;
   height: 596px;
-  top: 100px;
+  top: 70px;
   left: calc(50% - 300px);
   background: #fff6e6;
   border-radius: 50px 50px 50px 50px;
@@ -139,9 +139,9 @@
 }
 
 .qr-code-image {
-  width: 186px;
-  height: 186px;
-  margin: 20px 0px 20px 200px;
+  width: 130px;
+  height: 130px;
+  margin: 40px 0px 10px 230px;
 }
 
 .successful-icon {
@@ -214,7 +214,7 @@
 }
 
 .cancel-btn {
-  top: calc(95% - 39px);
+  top: calc(80% - 39px);
   position: absolute;
   width: 250px;
   height: 39px;
@@ -238,7 +238,7 @@
 }
 
 .save-btn {
-  top: calc(95% - 39px);
+  top: calc(80% - 39px);
   position: absolute;
   width: 250px;
   height: 39px;
@@ -318,7 +318,7 @@
   }
 
   .qr-code-image {
-    margin: 20px 0px 20px 200px;
+    margin: 40px 0px 10px 230px;
   }
 
   .accept-modal-text {
@@ -374,7 +374,7 @@
   }
 
   .qr-code-image {
-    margin: 20px 0px 20px 100px;
+    margin: 40px 0px 10px 230px;
   }
 
   .modal {
@@ -429,7 +429,7 @@
   }
 
   .qr-code-image {
-    margin: 20px 0px 20px 100px;
+    margin: 40px 0px 10px 230px;
   }
 
   .modal {
