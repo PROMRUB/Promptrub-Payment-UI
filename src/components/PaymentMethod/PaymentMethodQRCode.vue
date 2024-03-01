@@ -60,7 +60,7 @@ export default {
         },
         onClickDownloadImage() {
             const link = document.createElement('a');
-            link.href = this.imageSrc;
+            link.href = this.paymentMethodStore.qrImage;
             link.download = 'QrImage.png';
             link.click();
         },
