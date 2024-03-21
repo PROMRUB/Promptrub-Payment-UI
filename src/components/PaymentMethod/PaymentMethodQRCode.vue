@@ -5,7 +5,7 @@
         </div>
         <img class="qr-code-image" :src="paymentMethodStore.qrImage" alt="QR Code" />
         <div class="prompt-content-header qr-code-content qr-suggestion-message">
-            <label>Ref# {{ paymentMethodStore.refNo }}</label>
+            <label for="refNoInput">Ref# {{ paymentMethodStore.refNo }}</label>
         </div>
         <div class="prompt-content-header qr-align-center qr-code-header">
             <label>จำนวนเงิน (บาท)</label>
@@ -17,7 +17,7 @@
             <label class="accept-text">บันทึก</label>
         </div>
         <div @click="onClickOpenMethod" class="cancel-btn">
-            <label class="accept-text">ยกเลิก</label> 
+            <label class="accept-text">ยกเลิก</label>
         </div>
     </main>
 </template>
@@ -50,6 +50,18 @@ export default {
             const orgId = urlParams.get('orgId');
             const transactionId = urlParams.get('transactionId');
             this.paymentMethodStore.generateQrCode(orgId, transactionId);
+            const intervalId = setInterval(() => {
+                this.paymentMethodStore.checkConfirmation(orgId, transactionId)
+                    .then(() => {
+                        if (this.paymentMethodStore.step == 4) {
+                            clearInterval(intervalId);
+                            this.$emit('selectedMethod', 4);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Failed to generate QR code:', error);
+                    });
+            }, 5000);
         },
         handleInput(event) {
             this.formatValue(event.target.value)

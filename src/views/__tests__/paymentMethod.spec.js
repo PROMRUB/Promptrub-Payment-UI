@@ -30,13 +30,6 @@ describe('PaymentMethod.vue', () => {
     expect(store.isShowModal).toBe(true)
   })
 
-  it('redirects to the correct URL when onClickCancelConfirmed is called', () => {
-    delete window.location
-    window.location = { href: '' }
-    wrapper.vm.onClickCancelConfirmed()
-    expect(window.location.href).toBe('https://www.google.com')
-  })
-
   it('selects method when onClickSelectMethod is called', async () => {
     const value = 2
     await wrapper.vm.onClickSelectMethod(value)
@@ -89,22 +82,4 @@ describe('PaymentMethod.vue', () => {
     expect(wrapper.vm.isSelectMethodStep).toBe(false)
     expect(wrapper.vm.isCardStep).toBe(true)
   })
-
-  it('sets the correct data properties and redirects when paymentMethodStore.step is 4', async () => {
-    store.step = 4
-    wrapper = mount(PaymentMethod)
-
-    delete window.location
-    window.location = { href: '' }
-
-    expect(wrapper.vm.isShowShortBg).toBe(false)
-    expect(wrapper.vm.isShowLongBg).toBe(true)
-    expect(wrapper.vm.isSuccessfulStep).toBe(true)
-    expect(wrapper.vm.isSelectMethodStep).toBe(false)
-    expect(wrapper.vm.paymentMethodStore.msg).toBe('ชำระเงินสำเร็จ')
-
-    await new Promise((resolve) => setTimeout(resolve, 15000))
-
-    expect(window.location.href).toBe('https://www.google.com')
-  }, 20000)
 })

@@ -31,7 +31,7 @@ const paymentMethodStore = usePaymentMethodStore();
         <PaymentMethodSelect @selectedMethod="onClickSelectMethod" />
       </div>
       <div v-show="isQRCodeStep">
-        <PaymentMethodQRCode @openModal="onClickOpenModal" />
+        <PaymentMethodQRCode @openModal="onClickOpenModal" @selectedMethod="onClickSelectMethod"/>
       </div>
       <div v-show="isCardStep">
       </div>
@@ -122,21 +122,25 @@ export default {
         this.isShowLongBg = true;
         this.isSuccessfulStep = true;
         this.isSelectMethodStep = false;
+        this.isQRCodeStep = false;
         this.paymentMethodStore.msg = 'ชำระเงินสำเร็จ'
+        const link = document.createElement('a');
+            link.href = this.paymentMethodStore.receiptUrl;
+            link.download = 'receipt.pdf';
+            link.click();
         setTimeout(() => {
-          window.location.href = 'https://www.google.com'
+          window.location.href = this.paymentMethodStore.redirectUrl
         }, 15000);
       }
     },
     onClickCloseModal() {
-      console.log('close')
       this.paymentMethodStore.isShowModal = false
     },
     onClickOpenModal() {
       this.paymentMethodStore.isShowModal = true
     },
     onClickCancelConfirmed() {
-      window.location.href = 'https://www.google.com'
+      window.location.href = this.paymentMethodStore.redirectUrl
     },
     onClickSelectMethod(value) {
       this.reactive++

@@ -12,6 +12,11 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
   let refNo = ref("TransactionID1234567890")
   let qrImage = ref("")
   let total = ref("500.12")
+  let redirectUrl = ""
+  let receiptUrl = ""
+
+  let baseUrl = "https://localhost:44369"
+  //let baseUrl = "https://dev-single-payment-api.promrub.com"
 
   function updateMsg(newMsg) {
     this.msg = newMsg
@@ -27,11 +32,11 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
 
   async function fetchData(orgId, transactionId) {
     try {
-      // const response = await axios.get(`https://localhost:44369/v1/api/Payment/org/${orgId}/action/GetPaymentDetails/${transactionId}`)
-      const response = await axios.get(`https://dev-single-payment-api.promrub.com/v1/api/Payment/org/${orgId}/action/GetPaymentDetails/${transactionId}`)
+      const response = await axios.get(baseUrl+`/v1/api/Payment/org/${orgId}/action/GetPaymentDetails/${transactionId}`)
       this.shopName = response.data.data.orgName
       this.refNo = response.data.data.refTransactionId
       this.total = response.data.data.prices.toString()
+      this.redirectUrl = response.data.data.redirectUrl
     } catch (error) {
       console.error(error)
     }
@@ -39,13 +44,25 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
 
   async function generateQrCode(orgId, transactionId) {
     try {
-      // const response = await axios.get(`https://localhost:44369/v1/api/Payment/org/${orgId}/action/GenerateQr30/${transactionId}`)
-      const response = await axios.get(`https://dev-single-payment-api.promrub.com/v1/api/Payment/org/${orgId}/action/GenerateQr30/${transactionId}`)
+      const response = await axios.get(baseUrl+`/v1/api/Payment/org/${orgId}/action/GenerateQr30/${transactionId}`)
       this.qrImage = "data:image/png;base64," + response.data.data.qrImage
     } catch (error) {
       console.error(error)
     }
   }
 
-  return { msg, step, isShowModal, isShowLogo, isShowInformation, shopName, refNo, qrImage, total, updateMsg, updateStep, toggleLogo, fetchData, generateQrCode }
+  async function checkConfirmation(orgId, transactionId) {
+    try {
+      const response = await axios.get(baseUrl+`/v1/api/Payment/org/${orgId}/action/GetPaymentDetails/${transactionId}`)
+      if(response.data.data.paymentStatus == 3)
+      {
+        this.step = 4
+        this.receiptUrl = baseUrl + `/v1/api/Payment/org/${orgId}/action/GetReceipt/${transactionId}`
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  
+  return { msg, step, isShowModal, isShowLogo, isShowInformation, shopName, refNo, qrImage, total, redirectUrl, receiptUrl, updateMsg, updateStep, toggleLogo, fetchData, generateQrCode, checkConfirmation }
 })
