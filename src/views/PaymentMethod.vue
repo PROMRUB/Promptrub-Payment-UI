@@ -12,9 +12,9 @@ const paymentMethodStore = usePaymentMethodStore();
 
 <template style="text-align:center;">
   <Teleport to="body">
-      <div id="modal" v-show="paymentMethodStore.isShowModal" class="modal">
-        <CancelModal @closeModal="onClickCloseModal" @cancelModal="onClickCancelConfirmed" />
-      </div>
+    <div id="modal" v-show="paymentMethodStore.isShowModal" class="modal">
+      <CancelModal @closeModal="onClickCloseModal" @cancelModal="onClickCancelConfirmed" />
+    </div>
   </Teleport>
 
   <div>
@@ -31,7 +31,7 @@ const paymentMethodStore = usePaymentMethodStore();
         <PaymentMethodSelect @selectedMethod="onClickSelectMethod" />
       </div>
       <div v-show="isQRCodeStep">
-        <PaymentMethodQRCode @openModal="onClickOpenModal" @selectedMethod="onClickSelectMethod"/>
+        <PaymentMethodQRCode @openModal="onClickOpenModal" @selectedMethod="onClickSelectMethod" />
       </div>
       <div v-show="isCardStep">
       </div>
@@ -72,7 +72,8 @@ export default {
       isQRCodeStep: false,
       isCardStep: false,
       isSuccessfulStep: false,
-      paymentMethodStore: usePaymentMethodStore()
+      paymentMethodStore: usePaymentMethodStore(),
+      hvReceipt: false
     };
   },
   mounted() {
@@ -124,10 +125,13 @@ export default {
         this.isSelectMethodStep = false;
         this.isQRCodeStep = false;
         this.paymentMethodStore.msg = 'ชำระเงินสำเร็จ'
-        const link = document.createElement('a');
-            link.href = this.paymentMethodStore.receiptUrl;
-            link.download = 'receipt.pdf';
-            link.click();
+        if (this.hvReceipt == false) {
+          const link = document.createElement('a');
+          link.href = this.paymentMethodStore.receiptUrl;
+          link.download = 'receipt.pdf';
+          link.click();
+          this.hvReceipt = true
+        }
         setTimeout(() => {
           window.location.href = this.paymentMethodStore.redirectUrl
         }, 15000);
