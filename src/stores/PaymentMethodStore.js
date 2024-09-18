@@ -15,13 +15,14 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
   let redirectUrl = ""
   let receiptUrl = ""
 
+  let baseUrl = ""
+  
   if(window.location.hostname === "dev-payment-channel.promrub.com"){
     baseUrl = 'https://dev-single-payment-api.promrub.com'
   }else if (window.location.hostname === "payment-channel.promrub.com"){
     baseUrl = 'https://single-payment-api.promrub.com'
   } 
 
-  let baseUrl = ""
 
   function updateMsg(newMsg) {
     this.msg = newMsg
