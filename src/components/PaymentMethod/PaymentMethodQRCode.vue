@@ -4,13 +4,11 @@
             <label>{{ paymentMethodStore.shopName }}</label>
         </div>
         <img class="qr-code-image" :src="paymentMethodStore.qrImage" alt="QR Code" />
-        <div class="prompt-content-header qr-code-content qr-suggestion-message" style="color:red;text-align:center;">
-            <label for="refNoInput">สามารถกดค้างที่ QR Code</label><br>
-            <label for="refNoInput">เพื่อบันทึกภาพ QR ในคลังรูป</label><br><br>
-            <label style="color:red;text-align:center;">หลังจากนั้น นำภาพ QR ไปชำระในแอพธนาคาร</label>
-        </div>
         <div class="prompt-content-header qr-code-content qr-suggestion-message">
             <label for="refNoInput">Ref# {{ paymentMethodStore.refNo }}</label>
+        </div>
+        <div class="prompt-content-header qr-code-content qr-suggestion-message" style="color:red;text-align:center;">
+            <label for="refNoInput">สามารถกดค้างที่ QR Code เพื่อบันทึกภาพ</label><br>
         </div>
         <div class="prompt-content-header qr-align-center qr-code-header">
             <label>จำนวนเงิน (บาท)</label>
