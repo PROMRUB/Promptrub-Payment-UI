@@ -6,7 +6,7 @@
         <img class="successful-icon" src="@/assets/images/cross.png" alt="cross-icon">
     </div>
     <div class="text-center">
-        <label class="prompt-content-header">การชำระเงินล้มเหลว</label>
+        <label class="prompt-content-header">การชำระเงินถูกยกเลิก หรือหมดเวลา</label>
     </div>
     <div class="text-center">
         <label class="prompt-content-body">กรุณารอสักครู่</label>
