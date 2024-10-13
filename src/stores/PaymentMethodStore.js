@@ -65,6 +65,9 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
         this.step = 4
         this.receiptUrl = baseUrl + `/v1/api/Payment/org/${orgId}/action/GetReceipt/${transactionId}`
       }
+      else if(response.data.data.paymentStatus == 1102 || response.data.data.paymentStatus == 4){
+        this.step = 5
+      }
     } catch (error) {
       console.error(error)
     }
