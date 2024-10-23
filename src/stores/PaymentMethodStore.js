@@ -60,12 +60,12 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
   async function checkConfirmation(orgId, transactionId) {
     try {
       const response = await axios.get(baseUrl+`/v1/api/Payment/org/${orgId}/action/GetPaymentDetails/${transactionId}`)
-      if(response.data.data.paymentStatus == 3)
+      if(response.data.data.paymentStatus == 1000)
       {
         this.step = 4
         this.receiptUrl = baseUrl + `/v1/api/Payment/org/${orgId}/action/GetReceipt/${transactionId}`
       }
-      else if(response.data.data.paymentStatus == 1102 || response.data.data.paymentStatus == 4){
+      else if(response.data.data.paymentStatus == 1102){
         this.step = 5
       }
     } catch (error) {
