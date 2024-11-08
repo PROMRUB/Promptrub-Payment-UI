@@ -1,66 +1,66 @@
-name: SonarCloud
-permissions:
-    contents: read
-    actions: read
-on:
-  push:
-    branches:
-      - main
-      - develop
-  #pull_request:
-  #  types: [opened, synchronize, reopened]
-jobs:
-  sonar:
-    name: Build and analyze
-    runs-on: ubuntu-latest
-    steps:
-      - name: Slack notification start
-        if: always()
-        uses: 8398a7/action-slack@v3
-        with:
-            status: ${{ job.status }}
-            fields: repo,message,commit,author,ref,workflow # selectable (default: repo,message)
-            text: "Start Sonar scan [Promrub-Portal-UI]"
-        env:
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }} # required
+# name: SonarCloud
+# permissions:
+#     contents: read
+#     actions: read
+# on:
+#   # Disabled trigger for push events
+#   # push:
+#   #   branches:
+#   #     - main
+#   #     - develop
+#   # pull_request:
+#   #   types: [opened, synchronize, reopened]
+# jobs:
+#   sonar:
+#     name: Build and analyze
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Slack notification start
+#         if: always()
+#         uses: 8398a7/action-slack@v3
+#         with:
+#             status: ${{ job.status }}
+#             fields: repo,message,commit,author,ref,workflow # selectable (default: repo,message)
+#             text: "Start Sonar scan [Promrub-Portal-UI]"
+#         env:
+#             SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }} # required
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: 'zulu' # Alternative distribution options are available.
+#       - name: Set up JDK 17
+#         uses: actions/setup-java@v3
+#         with:
+#           java-version: 17
+#           distribution: 'zulu' # Alternative distribution options are available.
 
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+#       - uses: actions/checkout@v3
+#         with:
+#           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Cache SonarCloud scanner
-        id: cache-sonar-scanner
-        uses: actions/cache@v3
-        with:
-          path: ./.sonar/scanner
-          key: ${{ runner.os }}-sonar-scanner
-          restore-keys: ${{ runner.os }}-sonar-scanner
+#       - name: Cache SonarCloud scanner
+#         id: cache-sonar-scanner
+#         uses: actions/cache@v3
+#         with:
+#           path: ./.sonar/scanner
+#           key: ${{ runner.os }}-sonar-scanner
+#           restore-keys: ${{ runner.os }}-sonar-scanner
 
-      - name: Install dependencies
-        run: npm install
+#       - name: Install dependencies
+#         run: npm install
 
-      - name: Run tests with coverage
-        run: npm run test:coverage
+#       - name: Run tests with coverage
+#         run: npm run test:coverage
 
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#       - name: SonarCloud Scan
+#         uses: SonarSource/sonarcloud-github-action@master
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Slack notification end
-        if: always()
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,author,ref,workflow # selectable (default: repo,message)
-          text: "Done Sonar scan [Promrub-Portal-UI] with status [${{job.status}}]"
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }} # required
-
+#       - name: Slack notification end
+#         if: always()
+#         uses: 8398a7/action-slack@v3
+#         with:
+#           status: ${{ job.status }}
+#           fields: repo,message,commit,author,ref,workflow # selectable (default: repo,message)
+#           text: "Done Sonar scan [Promrub-Portal-UI] with status [${{job.status}}]"
+#         env:
+#           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_URL }} # required
