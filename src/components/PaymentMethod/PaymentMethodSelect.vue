@@ -39,7 +39,14 @@
 </template>
 
 <script>
+import { usePaymentMethodStore } from '@/stores/PaymentMethodStore'
+
 export default {
+  data() {
+    return {
+      paymentMethodStore: usePaymentMethodStore()
+    }
+  },
   methods: {
     generateQrCode() {
       const urlParams = new URLSearchParams(window.location.search)
@@ -48,14 +55,8 @@ export default {
       this.paymentMethodStore
         .checkConfirmation(orgId, transactionId)
         .then(() => {
-          if (this.paymentMethodStore.step == 4) {
-            clearInterval(intervalId)
-            this.$emit('selectedMethod', 4)
-          }
-          if (this.paymentMethodStore.step == 5) {
-            clearInterval(intervalId)
-            this.$emit('selectedMethod', 5)
-          }
+          clearInterval(intervalId)
+          this.$emit('selectedMethod', this.paymentMethodStore.step)
         })
         .catch((error) => {
           console.error('Failed to generate QR code:', error)

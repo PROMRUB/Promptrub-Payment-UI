@@ -82,4 +82,24 @@ describe('PaymentMethod.vue', () => {
     expect(wrapper.vm.isSelectMethodStep).toBe(false)
     expect(wrapper.vm.isCardStep).toBe(true)
   })
+
+  it('updates data and store state correctly when step is 1', async () => {
+    store.step = 4
+    wrapper = mount(PaymentMethod)
+    expect(wrapper.vm.isShowShortBg).toBe(false)
+    expect(wrapper.vm.isShowLongBg).toBe(true)
+    expect(store.isShowLogo).toBe(true)
+    expect(store.msg).toBe('ชำระเงินสำเร็จ')
+    expect(wrapper.vm.isSuccessfulStep).toBe(true)
+  })
+
+  it('updates data and store state correctly when step is 1', async () => {
+    store.step = 5
+    wrapper = mount(PaymentMethod)
+    expect(wrapper.vm.isShowShortBg).toBe(false)
+    expect(wrapper.vm.isShowLongBg).toBe(true)
+    expect(store.isShowLogo).toBe(true)
+    expect(store.msg).toBe('ชำระเงินล้มเหลว')
+    expect(wrapper.vm.isFailedStep).toBe(true)
+  })
 })
