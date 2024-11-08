@@ -53,7 +53,6 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
       const response = await axios.get(baseUrl+`/v1/api/Payment/org/${orgId}/action/GenerateQr30/${transactionId}`)
       this.qrImage = "data:image/png;base64," + response.data.data.qrImage
     } catch (error) {
-      console.error(error)
     }
   }
 
@@ -69,7 +68,6 @@ export const usePaymentMethodStore = defineStore('paymentMethodStore', () => {
         this.step = 5
       }
     } catch (error) {
-      console.error(error)
     }
   }
   

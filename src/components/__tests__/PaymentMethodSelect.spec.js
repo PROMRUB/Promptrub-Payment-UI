@@ -12,7 +12,6 @@ describe('PaymentMethodSelect.vue', () => {
   beforeEach(() => {
     const app = createApp()
     app.use(createPinia())
-    store = usePaymentMethodStore()
     store = usePaymentMethodStore();
     store.checkConfirmation = vi.fn().mockResolvedValue(true);
     window.location = {
@@ -36,6 +35,7 @@ describe('PaymentMethodSelect.vue', () => {
 
     wrapper.vm.$emit('selectedMethod', store.step);
 
+    expect(wrapper.emitted().selectedMethod).toBeTruthy()
     expect(wrapper.emitted().selectedMethod[0]).toEqual([store.step]);
   })
 
