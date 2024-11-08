@@ -28,14 +28,14 @@ describe('PaymentMethodMobileBanking.vue', () => {
     store.total = '1234567.8910'
     wrapper = mount(PaymentMethodMobileBanking)
     expect(wrapper.vm.rawValue).toBe('1234567.8910')
-    expect(wrapper.vm.formattedValue).toBe('1,234,567.89 บาท')
+    expect(wrapper.vm.formattedValue).toBe('1,234,567.89')
   })
 
   it('formats total value correctly', () => {
     store.total = '1234567'
     wrapper = mount(PaymentMethodMobileBanking)
     expect(wrapper.vm.rawValue).toBe('1234567')
-    expect(wrapper.vm.formattedValue).toBe('1,234,567 บาท')
+    expect(wrapper.vm.formattedValue).toBe('1,234,567.00')
   })
 
   it('formats input 2 float value correctly', async () => {
@@ -46,7 +46,7 @@ describe('PaymentMethodMobileBanking.vue', () => {
     }
     await wrapper.vm.handleInput(inputEvent)
     expect(wrapper.vm.rawValue).toBe('1234567.8910')
-    expect(wrapper.vm.formattedValue).toBe('1,234,567.89 บาท')
+    expect(wrapper.vm.formattedValue).toBe('1,234,567.89')
   })
 
   it('formats input value correctly', async () => {
@@ -57,6 +57,6 @@ describe('PaymentMethodMobileBanking.vue', () => {
     }
     await wrapper.vm.handleInput(inputEvent)
     expect(wrapper.vm.rawValue).toBe('1234567')
-    expect(wrapper.vm.formattedValue).toBe('1,234,567 บาท')
+    expect(wrapper.vm.formattedValue).toBe('1,234,567.00')
   })
 })

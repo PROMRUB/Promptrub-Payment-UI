@@ -28,6 +28,8 @@
 import { usePaymentMethodStore } from '@/stores/PaymentMethodStore'
 import { formatCurrency } from '@/assets/utilities/util.js'
 export default {
+    components: {
+    },
     data() {
         return {
             rawValue: "",
@@ -36,6 +38,9 @@ export default {
         };
     },
     mounted() {
+        this.formatValue(this.paymentMethodStore.total)
+    },
+    updated() {
         this.formatValue(this.paymentMethodStore.total)
     },
     methods: {

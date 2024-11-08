@@ -6,24 +6,23 @@ import PaymentMethodMobileBanking from '@/components/PaymentMethod/PaymentMethod
 import PaymentMethodPaymentInformation from '@/components/PaymentMethod/PaymentMethodPaymentInformation.vue';
 import PaymentMethodQRCode from '@/components/PaymentMethod/PaymentMethodQRCode.vue';
 import PaymentMethodSuccessful from '@/components/PaymentMethod/PaymentMethodSuccessful.vue';
+import PaymentMethodFailed from '@/components/PaymentMethod/PaymentMethodFailed.vue';
+
 
 const paymentMethodStore = usePaymentMethodStore();
 </script>
 
 <template style="text-align:center;">
   <Teleport to="body">
-      <div id="modal" v-show="paymentMethodStore.isShowModal" class="modal">
-        <CancelModal @closeModal="onClickCloseModal" @cancelModal="onClickCancelConfirmed" />
-      </div>
+    <div id="modal" v-show="paymentMethodStore.isShowModal" class="modal">
+      <CancelModal @closeModal="onClickCloseModal" @cancelModal="onClickCancelConfirmed" />
+    </div>
   </Teleport>
 
   <div>
     <label class="prompt-header">{{ paymentMethodStore.msg }}</label>
   </div>
   <div>
-    <div v-show="paymentMethodStore.isShowLogo">
-      <img class="logo-image" src="../assets/images/logo.svg" alt="Logo Image">
-    </div>
     <div v-show="paymentMethodStore.isShowInformation">
       <PaymentMethodPaymentInformation />
     </div>
@@ -34,12 +33,15 @@ const paymentMethodStore = usePaymentMethodStore();
         <PaymentMethodSelect @selectedMethod="onClickSelectMethod" />
       </div>
       <div v-show="isQRCodeStep">
-        <PaymentMethodQRCode @openModal="onClickOpenModal" />
+        <PaymentMethodQRCode @openModal="onClickOpenModal" @selectedMethod="onClickSelectMethod" />
       </div>
       <div v-show="isCardStep">
       </div>
       <div v-show="isSuccessfulStep">
         <PaymentMethodSuccessful />
+      </div>
+      <div v-show="isFailedStep">
+        <PaymentMethodFailed />
       </div>
     </div>
     <div v-show="isShowShortBg" :key="reactive" class="background-body-short">
@@ -63,7 +65,8 @@ export default {
     PaymentMethodSelect,
     PaymentMethodMobileBanking,
     PaymentMethodQRCode,
-    PaymentMethodSuccessful
+    PaymentMethodSuccessful,
+    PaymentMethodFailed
   },
   data() {
     return {
@@ -75,7 +78,9 @@ export default {
       isQRCodeStep: false,
       isCardStep: false,
       isSuccessfulStep: false,
-      paymentMethodStore: usePaymentMethodStore()
+      isFailedStep: false,
+      paymentMethodStore: usePaymentMethodStore(),
+      hvReceipt: false
     };
   },
   mounted() {
@@ -87,6 +92,10 @@ export default {
   methods: {
     updateComponent() {
       if (this.paymentMethodStore.step == 1) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const orgId = urlParams.get('orgId');
+        const transactionId = urlParams.get('transactionId');
+        this.paymentMethodStore.fetchData(orgId, transactionId)
         this.isShowShortBg = false;
         this.isShowLongBg = true;
         this.paymentMethodStore.isShowLogo = true;
@@ -120,22 +129,43 @@ export default {
         this.isShowShortBg = false;
         this.isShowLongBg = true;
         this.isSuccessfulStep = true;
+        this.isFailedStep = false;
         this.isSelectMethodStep = false;
+        this.isQRCodeStep = false;
         this.paymentMethodStore.msg = 'ชำระเงินสำเร็จ'
+        if (this.hvReceipt == false) {
+          const link = document.createElement('a');
+          link.href = this.paymentMethodStore.receiptUrl;
+          link.download = 'receipt.pdf';
+          link.click();
+          this.hvReceipt = true
+        }
         setTimeout(() => {
-          window.location.href = 'https://www.google.com'
+          window.location.href = this.paymentMethodStore.redirectUrl
         }, 15000);
       }
+      else if (this.paymentMethodStore.step == 5) {
+        this.isShowShortBg = false;
+        this.isShowLongBg = true;
+        this.isSuccessfulStep = false;
+        this.isFailedStep = true;
+        this.isSelectMethodStep = false;
+        this.isQRCodeStep = false;
+        this.paymentMethodStore.msg = 'ชำระเงินล้มเหลว'
+        setTimeout(() => {
+          window.location.href = this.paymentMethodStore.redirectUrl
+        }, 15000);
+      }
+      console.log(this.paymentMethodStore.step);
     },
     onClickCloseModal() {
-      console.log('close')
       this.paymentMethodStore.isShowModal = false
     },
     onClickOpenModal() {
       this.paymentMethodStore.isShowModal = true
     },
     onClickCancelConfirmed() {
-      window.location.href = 'https://www.google.com'
+      window.location.href = this.paymentMethodStore.redirectUrl
     },
     onClickSelectMethod(value) {
       this.reactive++

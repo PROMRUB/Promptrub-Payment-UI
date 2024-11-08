@@ -10,8 +10,8 @@ const formatCurrency = function (value) {
     .join('')
   let decimalPart = parts[1] || ''
   decimalPart = decimalPart.length > 2 ? decimalPart.substring(0, 2) : decimalPart
-  const formattedValue = decimalPart ? `${integerPart}.${decimalPart}` : integerPart
-  return formattedValue.concat(' บาท')
+  const formattedValue = decimalPart ? `${integerPart}.${decimalPart}` : integerPart + '.00'
+  return formattedValue
 }
 
 export { formatCurrency }
